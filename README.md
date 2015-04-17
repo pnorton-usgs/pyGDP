@@ -1,6 +1,8 @@
 pyGDP
 =====
 
+[![Build Status](https://travis-ci.org/USGS-CIDA/pyGDP.svg?branch=master)](https://travis-ci.org/USGS-CIDA/pyGDP)
+
 pyGDP provides a fast and efficient way of making calls to the USGS GeoData Portal.
 
 pyGDP has the following algorithms:
