@@ -26,7 +26,7 @@ def get_URLs(environ_name):
         
     if environ_name == 'testing':
         
-      urls        = {  'WFS_URL'	        :	'http://cida-test.er.usgs.gov/gdp/geoserver/wfs',
+        urls        = {  'WFS_URL'	        :	'http://cida-test.er.usgs.gov/gdp/geoserver/wfs',
                       'upload_URL'	        :	'http://cida-test.er.usgs.gov/gdp/geoserver',
                       'WPS_URL'	        :	'http://cida-test.er.usgs.gov/gdp/process/WebProcessingService',
                       'WPS_Service'	        :	'http://cida-test.er.usgs.gov/gdp/utility/WebProcessingService',
@@ -43,7 +43,7 @@ def get_URLs(environ_name):
                        }
     return urls
 
-urls=get_URLs(environ_name = 'production')
+urls=get_URLs(environ_name = os.environ.get('PYGDP_SDL', 'production'))
 
 WFS_URL    = urls['WFS_URL']
 upload_URL = urls['upload_URL']
