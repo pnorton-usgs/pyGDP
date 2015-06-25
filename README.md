@@ -36,7 +36,7 @@ pip install -r pyGDP/requirements.txt
 pip install -r pyGDP/testing-requirements.txt
 cd pyGDP
 python setup.py install
-lettuce pyGDP/Lettuce_Tests/features/ --tag=-not_working
+lettuce Lettuce_Tests/features/ --tag=-not_working
 ```
 OR
 2.) Install using pip (first install or --upgrade dependencies):
