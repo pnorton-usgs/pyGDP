@@ -1,3 +1,6 @@
+The services by default use publically available services. The QA and dev services can be used instead
+by setting the environment variable PYGDP_TIER to either 'testing' or 'development'.
+
 pyGDP_client.py
 ===============
 
