@@ -43,7 +43,7 @@ def get_URLs(environ_name):
                        }
     return urls
 
-urls=get_URLs(environ_name = os.environ.get('PYGDP_SDL', 'production'))
+urls=get_URLs(environ_name = os.environ.get('PYGDP_TIER', 'production'))
 
 WFS_URL    = urls['WFS_URL']
 upload_URL = urls['upload_URL']
