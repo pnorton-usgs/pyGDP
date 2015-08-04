@@ -1,3 +1,4 @@
+import base64
 from GDP_XML_Generator import gdpXMLGenerator
 from owslib.wps import WebProcessingService, monitorExecution 
 from pygdp.namespaces import upload_URL, WPS_URL, WPS_Service, CSWURL
