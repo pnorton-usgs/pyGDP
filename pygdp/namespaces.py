@@ -21,7 +21,7 @@ def get_URLs(environ_name):
                         'upload_URL'        	:	'http://cida-eros-gdpdev.er.usgs.gov:8082/geoserver/',
                         'WPS_URL'	        :	'http://cida-eros-gdpdev.er.usgs.gov:8080/gdp-process-wps/WebProcessingService',
                         'WPS_Service'	        :	'http://cida-eros-gdpdev.er.usgs.gov:8080/gdp-utility-wps/WebProcessingService?Service=WPS&Request=GetCapabilities',	
-                        'CSWURL'	        :	'http://cida-test.er.usgs.gov/gdp/geonetwork/srv/en/csw'
+                        'CSWURL'	        :	'http://cida.usgs.gov/gdp/geonetwork/srv/en/csw'
                       }
         
     if environ_name == 'testing':
