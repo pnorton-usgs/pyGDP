@@ -3,6 +3,8 @@
 pyGDP
 =====
 
+[![Build Status](https://travis-ci.org/USGS-CIDA/pyGDP.svg?branch=master)](https://travis-ci.org/USGS-CIDA/pyGDP)
+
 pyGDP provides a fast and efficient way of making calls to the USGS GeoData Portal.
 
 pyGDP has the following algorithms:
@@ -28,15 +30,16 @@ Installation
 ==================
 1.) Use of virtualenv and pip is highly recommended. Sample commands to install pyGDP as a virtual env on a mac/unix operating system are given below. Similar commands can be used on windows. 
 
->> git clone https://github.com/USGS-CIDA/pyGDP.git
->> virtualenv -p /usr/bin/python2.7 pyGDP/venv
->> source pyGDP/venv/bin/activate
->> pip install -r pyGDP/requirements.txt
->> pip install -r pyGDP/testing-requirements.txt
->> cd pyGDP
->> python setup.py install
->> lettuce pyGDP/Lettuce_Tests/features/ --tag=-not_working
-
+```
+git clone https://github.com/USGS-CIDA/pyGDP.git
+virtualenv -p /usr/bin/python2.7 pyGDP/venv
+source pyGDP/venv/bin/activate
+pip install -r pyGDP/requirements.txt
+pip install -r pyGDP/testing-requirements.txt
+cd pyGDP
+python setup.py install
+lettuce Lettuce_Tests/features/ --tag=-not_working
+```
 OR
 2.) Install using pip (first install or --upgrade dependencies):
 
