@@ -12,7 +12,7 @@ def get_URLs(environ_name):
                         'upload_URL'	        :	'http://cida.usgs.gov/gdp/geoserver',
                         'WPS_URL'	        :	'http://cida.usgs.gov/gdp/process/WebProcessingService',
                         'WPS_Service'	        :	'http://cida.usgs.gov/gdp/utility/WebProcessingService',
-                        'CSWURL'	        :	'http://cida.usgs.gov/gdp/geonetwork/srv/en/csw'
+                        'CSWURL'	        :	'https://www.sciencebase.gov/catalog/item/54dd2326e4b08de9379b2fb1/csw'
                       }
         
     if environ_name == 'development':
@@ -21,7 +21,7 @@ def get_URLs(environ_name):
                         'upload_URL'        	:	'http://cida-eros-gdpdev.er.usgs.gov:8082/geoserver/',
                         'WPS_URL'	        :	'http://cida-eros-gdpdev.er.usgs.gov:8080/gdp-process-wps/WebProcessingService',
                         'WPS_Service'	        :	'http://cida-eros-gdpdev.er.usgs.gov:8080/gdp-utility-wps/WebProcessingService?Service=WPS&Request=GetCapabilities',	
-                        'CSWURL'	        :	'http://cida.usgs.gov/gdp/geonetwork/srv/en/csw'
+                        'CSWURL'	        :	'https://www.sciencebase.gov/catalog/item/54dd2326e4b08de9379b2fb1/csw'
                       }
         
     if environ_name == 'testing':
@@ -30,7 +30,7 @@ def get_URLs(environ_name):
                       'upload_URL'	        :	'http://cida-test.er.usgs.gov/gdp/geoserver',
                       'WPS_URL'	        :	'http://cida-test.er.usgs.gov/gdp/process/WebProcessingService',
                       'WPS_Service'	        :	'http://cida-test.er.usgs.gov/gdp/utility/WebProcessingService',
-                      'CSWURL'	        :	'http://cida.usgs.gov/gdp/geonetwork/srv/en/csw'
+                      'CSWURL'	        :	'https://www.sciencebase.gov/catalog/item/54dd2326e4b08de9379b2fb1/csw'
                     }
         
     if environ_name == 'custom':
