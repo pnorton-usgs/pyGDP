@@ -6,6 +6,8 @@ import dateutil.parser
 import urllib2
 import shutil
 
+### NOTE: THIS ALGORITHM HAS BEEN REMOVED FROM THE GEO DATA PORTAL UNTIL FUTHER NOTICE.###
+
 def submitCustomBioclim(processid="org.n52.wps.server.r.gridded_bioclim", 
                         outputfname=None, verbose=False, **kwargs):
     '''Makes a call to the WPS algorithm wrapping an R script which generates 

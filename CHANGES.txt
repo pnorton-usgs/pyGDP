@@ -1,5 +1,10 @@
 Changes 
 =======
+1.3.3
+---------------
+- Changed CSW catalog to ScienceBase
+- Removed bioclim algorithm from pygdp.py and disabled test.
+
 1.3.2
 ---------------
 - Added a requirements specifically for running tests.

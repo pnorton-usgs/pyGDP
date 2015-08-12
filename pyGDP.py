@@ -6,7 +6,7 @@
 # =============================================================================
 from pygdp import shapefile_value_handle, shapefile_id_handle, _get_geotype
 from pygdp import webdata_handle, _webdata_xml_generate
-from pygdp import fwgs, _execute_request, feature_coverage, bioclim
+from pygdp import fwgs, _execute_request, feature_coverage
 from pygdp import upload_shapefile, shape_to_zip
 from GDP_XML_Generator import gdpXMLGenerator
 from owslib.wps import WebProcessingService, monitorExecution
@@ -105,11 +105,6 @@ class pyGDPwebProcessing():
         return fwgs.submitFeatureWeightedGridStatistics(geoType, dataSetURI, varID, startTime, endTime, attribute, value, gmlIDs,
                                                         verbose, coverage, delim, stat, grpby, timeStep, summAttr, weighted, self.wfsUrl, outputfname, sleepSecs)
 
-    def submitCustomBioclim(processid="org.n52.wps.server.r.gridded_bioclim", outputfname=None, verbose=False, **kwargs):
-        if verbose:
-            ch.setLevel(logging.INFO)
-        return bioclim.submitCustomBioclim(processid="org.n52.wps.server.r.gridded_bioclim", outputfname=outputfname, verbose=verbose, **kwargs)
-
     #pyGDP File Utilities
     def shapeToZip(self, inShape, outZip=None, allFiles=True):
         return shape_to_zip.shapeToZip(inShape, outZip=None, allFiles=True)
@@ -180,7 +175,6 @@ class pyGDPwebProcessing():
     getTuples.__doc__ = shapefile_id_handle.getTuples.__doc__
     getValues.__doc__ = shapefile_value_handle.getValues.__doc__
     shapeToZip.__doc__ = shape_to_zip.shapeToZip.__doc__
-    submitCustomBioclim.__doc__ = bioclim.submitCustomBioclim.__doc__
     submitFeatureCategoricalGridCoverage.__doc__ = feature_coverage.submitFeatureCategoricalGridCoverage.__doc__
     submitFeatureCoverageOPenDAP.__doc__ = feature_coverage.submitFeatureCoverageOPenDAP.__doc__
     submitFeatureCoverageWCSIntersection.__doc__ = feature_coverage.submitFeatureCoverageWCSIntersection.__doc__
