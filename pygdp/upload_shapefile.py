@@ -1,4 +1,6 @@
 import base64
+import os
+from owslib.etree import etree
 from GDP_XML_Generator import gdpXMLGenerator
 from owslib.wps import WebProcessingService, monitorExecution 
 from pygdp.namespaces import upload_URL, WPS_URL, WPS_Service, CSWURL
@@ -29,10 +31,10 @@ def uploadShapeFile(filePath):
     
     
     # check to make sure a file with the same name does not exist
-    fileCheckString = "upload:" + filename
-    shapefiles = self.getShapefiles()
-    if fileCheckString in shapefiles:
-        raise Exception('File exists already.')
+    # fileCheckString = "upload:" + filename
+    # shapefiles = self.getShapefiles()
+    # if fileCheckString in shapefiles:
+    #     raise Exception('File exists already.')
     
     xmlGen = gdpXMLGenerator()
     root = xmlGen.getUploadXMLtree(filename, upload_URL, filedata)
@@ -56,7 +58,7 @@ def _encodeZipFolder(filename):
     with open(filename, 'rb') as fin:
         bytesRead = fin.read()
         encode= base64.b64encode(bytesRead)
-
+    
     #renames the file and saves it onto local drive
     filename = filename.split('.')
     filename = str(filename[0]) + '_copy.' + str(filename[-1])
