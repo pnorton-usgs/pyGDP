@@ -110,7 +110,7 @@ class pyGDPwebProcessing():
         return shape_to_zip.shapeToZip(inShape, outZip=None, allFiles=True)
 
     def uploadShapeFile(self, filePath):
-        value, ntuple = upload_shapefile.uploadShapefile(filePath)
+        value, ntuple = upload_shapefile.uploadShapeFile(filePath)
         return value, ntuple
 
     #pyGDP WFS Utilities
