@@ -17,11 +17,6 @@ def create_web_processing_object():
     new_web_processing = pyGDP.pyGDPwebProcessing()
     return new_web_processing
 
-@step(r'I am returned a pyGDP viable output')
-def test_output(step):
-    assert_equal(os.path.getsize((world.zip_name)), 3473)
-    clean_up()
-
 @step(r'And I upload the shapefile')
 def upload_shp(step):
     test_pyGDP = create_web_processing_object()
