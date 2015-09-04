@@ -67,7 +67,7 @@ def shapeToZip(inShape, outZip=None, allFiles=True):
             for f in ["%s.%s" % (os.path.join(inDir,rootName),ext)
                   for ext in ShapeExt]:
                 if os.path.exists(f):
-                    zf.write(f)
+                    zf.write(f, os.path.basename(f))
                     ##print f # debug print
             return outZip
         except Exception, msg:
