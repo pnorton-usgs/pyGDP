@@ -18,7 +18,7 @@ def get_URLs(environ_name):
     if environ_name == 'development':
         
         urls        = { 'WFS_URL'	        :	'http://cida-eros-gdpdev.er.usgs.gov:8082/geoserver/wfs',
-                        'upload_URL'        	:	'http://cida-eros-gdpdev.er.usgs.gov:8082/geoserver/',
+                        'upload_URL'        	:	'http://cida-eros-gdpdev.er.usgs.gov:8082/geoserver',
                         'WPS_URL'	        :	'http://cida-eros-gdpdev.er.usgs.gov:8080/gdp-process-wps/WebProcessingService',
                         'WPS_Service'	        :	'http://cida-eros-gdpdev.er.usgs.gov:8080/gdp-utility-wps/WebProcessingService?Service=WPS&Request=GetCapabilities',	
                         'CSWURL'	        :	'https://www.sciencebase.gov/catalog/item/54dd2326e4b08de9379b2fb1/csw'
