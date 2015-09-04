@@ -53,8 +53,7 @@ def _encodeZipFolder(filename):
         encode= base64.b64encode(bytesRead)
     
     #renames the file and saves it onto local drive
-    filename = filename.split('.')
-    filename = str(filename[0]) + '_copy.' + str(filename[-1])
+    filename = filename.replace('.zip','_copy.zip')
     
     fout = open(filename, "w")
     fout.write(encode)
