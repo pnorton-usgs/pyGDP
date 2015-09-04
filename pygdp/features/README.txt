@@ -1,1 +1,0 @@
-To be used with Lettuce tests

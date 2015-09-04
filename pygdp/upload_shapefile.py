@@ -29,13 +29,6 @@ def uploadShapeFile(filePath):
     filename = filename[len(filename) - 1]
     filename = filename.replace("_copy.zip", "")
     
-    
-    # check to make sure a file with the same name does not exist
-    # fileCheckString = "upload:" + filename
-    # shapefiles = self.getShapefiles()
-    # if fileCheckString in shapefiles:
-    #     raise Exception('File exists already.')
-    
     xmlGen = gdpXMLGenerator()
     root = xmlGen.getUploadXMLtree(filename, upload_URL, filedata)
     
