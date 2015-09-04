@@ -20,7 +20,6 @@ def create_web_processing_object():
 @step(r'And I upload the shapefile')
 def upload_shp(step):
     test_pyGDP = create_web_processing_object()
-    print world.zip_name
     world.uploadName = test_pyGDP.uploadShapeFile(world.zip_name)
 
 @step(r'I get back the shapefile name that I expect')

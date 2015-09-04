@@ -54,6 +54,7 @@ def _encodeZipFolder(filename):
     
     #renames the file and saves it onto local drive
     filename = filename.replace('.zip','_copy.zip')
+    print filename
     
     fout = open(filename, "w")
     fout.write(encode)
