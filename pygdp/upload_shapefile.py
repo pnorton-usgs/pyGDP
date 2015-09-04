@@ -30,6 +30,7 @@ def uploadShapeFile(filePath):
     filename = filename.replace("_copy.zip", "")
     
     xmlGen = gdpXMLGenerator()
+    print filename + ' test'
     root = xmlGen.getUploadXMLtree(filename, upload_URL, filedata)
     
     # now we have a complete XML upload request
