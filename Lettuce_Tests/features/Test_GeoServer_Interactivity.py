@@ -28,13 +28,13 @@ def define_the_conus(step):
 
 @step(r'I use the getAttributes method and I get a list of those attributes')
 def get_the_attributes(step):
-      test_pyGDP = create_web_processing_object()
-      world.attributes = test_pyGDP.getAttributes(world.shapefile)
+    test_pyGDP = create_web_processing_object()
+    world.attributes = test_pyGDP.getAttributes(world.shapefile)
 
 @step(r'I should see an expected number of attributes')
 def check_the_attributes(step):
-      assert_equal(len(world.attributes), 10)
-      assert('STATE' in world.attributes)
+    assert_equal(len(world.attributes), 10)
+    assert('STATE' in world.attributes)
 
 @step(r'I know that one of those attributes is "STATE"')
 def that_attribute_is_state(step):
@@ -72,4 +72,3 @@ def every_of_the_conus(step):
 @step(r'I am given multiple expected outputs from Feature Collection')
 def all_feature_collection(step):
     assert_not_equal(len(world.feature_collection.query.filters), 0)
-    
