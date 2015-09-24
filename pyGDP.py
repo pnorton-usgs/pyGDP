@@ -154,7 +154,14 @@ class pyGDPwebProcessing():
             ch.setLevel(logging.INFO)
         return webdata_handle.getDataUnits(dataSetURI, verbose)
     
-    def getDataSetURI(self, anyText='',CSWURL=CSWURL,BBox=None):
+    def getDataSetURI(self, anyText=None, CSWURL=CSWURL, BBox=None):
+        """
+        Searches a given CSW server and returns metadata content for the datasets found.
+        
+        :param anyText: keywords to be passed to CSW get records
+        :type anyText: list or None
+        
+        """
         return  webdata_handle.getDataSetURI(anyText, CSWURL, BBox)
 
     def getTimeRange(self, dataSetURI, varID, verbose=False):

@@ -1,6 +1,7 @@
 #The functions in this file exist to WFS requests to get the various values that exist for
 #shapefiles on the GDP. These include the shapefiles themselves, the attributes of those
 #shapefiles, and the values of those attributes.
+from io import BytesIO
 from owslib.wfs import WebFeatureService
 from owslib.etree import etree
 from pygdp.namespaces import upload_URL, WPS_URL, WPS_Service, CSWURL #WFS_URL, 
@@ -25,8 +26,9 @@ def getAttributes(shapefile, WFS_URL):
     """
     wfs = WebFeatureService(WFS_URL, version='1.1.0')
     feature = wfs.getfeature(typename=shapefile, maxfeatures=1, propertyname=None)
-    gml = etree.parse(feature)
-    gml_root=gml.getroot()
+    content = BytesIO(feature.read())
+    gml = etree.parse(content)
+    gml_root = gml.getroot()
     name_spaces = gml_root.nsmap
     
     attributes = []

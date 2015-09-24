@@ -17,7 +17,7 @@ def getDataSetURI(anyText, CSWURL, BBox):
 
                             csw = CatalogueServiceWeb(CSWURL, skip_caps=True)
                             #Works with owslib version 0.8.6.
-                            csw.getrecords(keywords=[anyText], outputschema='http://www.isotc211.org/2005/gmd', esn='full', maxrecords=100)
+                            csw.getrecords(keywords=anyText, outputschema='http://www.isotc211.org/2005/gmd', esn='full', maxrecords=100)
                             dataSetURIs = [['title','abstract',['urls']]]
                             for rec in csw.records:
                                     title=csw.records[rec].identification.title
