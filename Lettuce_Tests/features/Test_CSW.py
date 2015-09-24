@@ -3,9 +3,9 @@ from nose.tools import assert_equal, assert_true
 import pyGDP
 import warnings
 
-@step(r'I define the keyword as "(.*)"')
-def define_keyword(step, keyword):
-    world.my_keyword = keyword
+@step(r'I define the keyword as "prism climate group"')
+def define_keyword(step, keyword='prism climate group'):
+    world.my_keyword = [keyword]
 
 @step(r'I invoke the pyGDP.getDataSetURI method')
 def invoke_getDataSetURI(step):
@@ -26,7 +26,7 @@ def create_web_processing_object():
 
 @step(r'I am not defining any keywords')
 def undefine_keyword(step):
-    world.my_keyword == ''
+    world.my_keyword == None
 
 @step(r'I see anywhere between 1 and 1000 datasets')
 def true_within_range(step):
