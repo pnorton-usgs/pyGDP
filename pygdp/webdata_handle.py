@@ -27,17 +27,13 @@ def getDataSetURI(anyText, CSWURL, BBox):
                                             for onlineresource in range(len(csw.records[rec].distribution.online)):
                                                     urls.append(csw.records[rec].distribution.online[onlineresource].url)
                                     except AttributeError:
-                                            print#pass
-                                    else:
-                                            print#pass
+                                        pass
                                     for ident in range(len(csw.records[rec].identificationinfo)):
                                             try:
                                                     for operation in range(len(csw.records[rec].identificationinfo[ident].operations)):
                                                             urls.append(csw.records[rec].identificationinfo[ident].operations[0]['connectpoint'][0].url)
                                             except AttributeError:
-                                                    print#pass
-                                            else:
-                                                    print#pass
+                                                pass
                                     entry=[title,abstract,urls]
                                     dataSetURIs.append(entry)
                             for i,dataset in enumerate(dataSetURIs):
