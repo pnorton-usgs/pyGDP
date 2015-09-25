@@ -31,6 +31,17 @@ from pygdp.namespaces import DRAW_NAMESPACE, SMPL_NAMESPACE, UPLD_NAMESPACE
 from pygdp.namespaces import URL_timeout, WPS_attempts
 from pygdp.namespaces import namespaces
 
+
+try:
+    from config import PYGDP_INFO_LOGGING
+except ImportError:
+    PYGDP_INFO_LOGGING = False
+if not PYGDP_INFO_LOGGING:
+    logging.disable(logging.INFO)  # silence all log messages at the INFO level and below
+else:
+    logging.disable(logging.NOTSET)
+
+
 #Get OWSLib Logger
 logger = logging.getLogger('owslib')
 logger.setLevel(logging.DEBUG)
