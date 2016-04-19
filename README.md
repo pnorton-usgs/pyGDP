@@ -11,6 +11,9 @@ pyGDP has the following algorithms:
 	- FeatureCoverageOPenDap
 	- FeatureCoverageWCSIntersection
 
+**Before using the Geo Data Portal via Python, please read the scalability guidelines.**  
+https://my.usgs.gov/confluence/display/GeoDataPortal/Geo+Data+Portal+Scalability+Guidelines
+
 Additional documentation can be found at the Geo Data Portal wiki. 
 https://my.usgs.gov/confluence/pages/viewpage.action?pageId=250937417
 

@@ -10,6 +10,13 @@ Feature: Feature Weighted Grid Statistics
 		When I submit my FWGS
 		Then I should get the basic output that I expect
 
+	Scenario: Submit basic FWGS
+		Given I have defined my CONUS shapefile to be Wisconsin
+		And I will be using "ppt" in my favorite "prism" dataset
+		And I have even defined my own start and stop times
+		When I submit my unweighted FWGS
+		Then I should get the unweighted basic output that I expect
+
 	Scenario: Submit multi-stat variable FWGS
 		Given I have defined my CONUS shapefile to be Wisconsin
 		And I will be using "ppt" and "tmx" in my favorite "prism" datatset
