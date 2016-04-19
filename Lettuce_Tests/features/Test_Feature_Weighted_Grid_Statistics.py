@@ -26,6 +26,14 @@ def feature_weighted_grid_statistics(step):
                         world.dataset_uri, world.data_type, world.time_start, world.time_end, \
                         world.attribute, world.value, verbose=False, outputfname='testFWGS_testfile_test', sleepSecs=5)
 
+@step(r'I submit my unweighted FWGS')
+def feature_unweighted_grid_statistics(step):
+    test_pyGDP = create_web_processing_object()
+    world.output_file_unweighted = test_pyGDP.submitFeatureWeightedGridStatistics(world.shapefile, \
+                        world.dataset_uri, world.data_type, world.time_start, world.time_end, \
+                        world.attribute, world.value, verbose=False, outputfname='testFWGS_testfile_test', sleepSecs=5, \
+                        weighted=False, coverage='false')
+
 def create_web_processing_object():
     new_web_processing = pyGDP.pyGDPwebProcessing()
     return new_web_processing
@@ -33,6 +41,10 @@ def create_web_processing_object():
 @step(r'I should get the basic output that I expect')
 def basic_tests_for_basic_outputs(step):
     assert_equal(os.path.getsize(world.output_file), 133)
+
+@step(r'I should get the unweighted basic output that I expect')
+def basic_tests_for_basic_outputs(step):
+    assert_equal(os.path.getsize(world.output_file_unweighted), 133)        
 
 @step(r'I will be using "ppt" and "tmx" in my favorite "prism" datatset')
 def multi_prism_data(step):
