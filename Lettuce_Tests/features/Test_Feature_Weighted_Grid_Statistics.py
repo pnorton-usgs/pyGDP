@@ -69,7 +69,7 @@ def multi_feature_weighted_grid_statistics(step):
     
 @step(r'I should get the multi-stat output that I expect')
 def tests_for_multi_outputs(step):
-    assert_equal(os.path.getsize(world.output_file), 375)
+    assert_equal(os.path.getsize(world.output_file), 377)
 
 @step(r'I fill out every variable and submit my FWGS call')
 def full_feature_weighted_grid_statistics(step):
