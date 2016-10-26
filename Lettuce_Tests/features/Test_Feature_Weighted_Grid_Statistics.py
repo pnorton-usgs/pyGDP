@@ -82,7 +82,7 @@ def full_feature_weighted_grid_statistics(step):
 
 @step(r'I will be using a HUC 8 shapefile')
 def huc_shapefile(step):
-        world.shapefile  = 'sample:simplified_HUC8s'
+        world.shapefile  = 'sample:simplified_huc8'
         world.attribute  = 'HUC_8'
         world.value      = '08010211'
 

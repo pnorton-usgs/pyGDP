@@ -7,7 +7,7 @@ from nose.tools import assert_equal
 def define_HUC_shapefile(step):
     
     #pyGDP.WPS_URL = 'http://cida.usgs.gov/gdp/process/WebProcessingService'
-    world.shapefile = 'sample:simplified_HUC8s'
+    world.shapefile = 'sample:simplified_huc8'
     world.attribute = 'HUC_8'
     world.value = '08010211'
 

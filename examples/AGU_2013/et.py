@@ -12,7 +12,7 @@ pyGDP = pyGDP.pyGDPwebProcessing()
 
 # using the default WFS, specify the shapefile to use.
 # Used http://cida.usgs.gov/gdp/client/?development=true to identify the next three values.
-shapefile='sample:simplified_HUC8s'
+shapefile='sample:simplified_huc8'
 attribute='SUBBASIN'
 value='Au Sable'
 

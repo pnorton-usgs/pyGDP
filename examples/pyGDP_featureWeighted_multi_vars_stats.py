@@ -7,7 +7,7 @@ This example shows how to use multiple dataTypes and Statistics.
 
 """
 
-shapefile = 'sample:simplified_HUC8s'
+shapefile = 'sample:simplified_huc8'
 user_attribute = 'SUBBASIN'
 user_value = 'Baraboo'
 dataSet = 'dods://cida.usgs.gov/thredds/dodsC/gmo/GMO_w_meta.ncml'
