@@ -9,7 +9,7 @@ This example shows how easy it is to make a call, if all
 inputs are known before hand.
 """
 
-shapefile = 'sample:simplified_HUC8s'
+shapefile = 'sample:simplified_huc8'
 user_attribute = 'REGION'
 user_value = 'Great Lakes Region'
 dataSet = 'dods://cida.usgs.gov/thredds/dodsC/gmo/GMO_w_meta.ncml'
