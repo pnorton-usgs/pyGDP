@@ -33,7 +33,7 @@ def get_the_attributes(step):
 
 @step(r'I should see an expected number of attributes')
 def check_the_attributes(step):
-    assert_equal(len(world.attributes), 1)
+    assert_equal(len(world.attributes), 2)
     assert('STATE' in world.attributes)
 
 @step(r'I know that one of those attributes is "STATE"')
