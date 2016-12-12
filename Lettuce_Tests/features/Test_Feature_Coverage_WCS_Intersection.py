@@ -6,14 +6,13 @@ from nose.tools import assert_equal
 @step(r'I know my HUC_8 value') 
 def define_HUC_shapefile(step):
     
-    #pyGDP.WPS_URL = 'http://cida.usgs.gov/gdp/process/WebProcessingService'
     world.shapefile = 'sample:simplified_huc8'
     world.attribute = 'HUC_8'
     world.value = '08010211'
 
 @step(r'I know what dataset I want to use')
 def define_dataset_uri(step):
-    world.dataSetURI = 'http://raster.nationalmap.gov/ArcGIS/services/TNM_LandCover/MapServer/WCSServer'
+    world.dataSetURI = 'https://raster.nationalmap.gov/ArcGIS/services/TNM_LandCover/MapServer/WCSServer'
     world.dataType = '6'
 
 @step(r'I run that crazy WCS insersection function')

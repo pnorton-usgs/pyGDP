@@ -10,7 +10,7 @@ def bioclim_constants(step):
     world.end = "1951"
     world.bbox_in=[-87,41,-89,43]
     world.bioclims=[1,2,3,4,5,6,7]
-    world.OPeNDAP_URI="http://cida.usgs.gov/thredds/dodsC/prism"
+    world.OPeNDAP_URI="https://cida.usgs.gov/thredds/dodsC/prism"
     world.tmax_var  = "tmx"
     world.tmin_var = "tmn"
     world.prcp_var = "ppt"

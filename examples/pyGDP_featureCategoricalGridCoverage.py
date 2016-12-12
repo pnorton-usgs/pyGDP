@@ -6,7 +6,7 @@ shapefile = 'sample:CONUS_states'
 attribute = 'STATE'
 value = 'Alabama'
 
-dataSetURI = 'http://raster.nationalmap.gov/ArcGIS/services/TNM_LandCover/MapServer/WCSServer'
+dataSetURI = 'https://raster.nationalmap.gov/ArcGIS/services/TNM_LandCover/MapServer/WCSServer'
 
 dataType = '1'
 file_handle = pyGDP.submitFeatureCategoricalGridCoverage(shapefile, dataSetURI, dataType, attribute, value, verbose=True)

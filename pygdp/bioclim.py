@@ -16,7 +16,7 @@ def submitCustomBioclim(processid="org.n52.wps.server.r.gridded_bioclim",
     outputfname is the path to save the returned zip to
     the remaining argumnets are:
         OPeNDAP_URI: A locator of a valid OPenDAP dataset
-            defaults to: http://cida.usgs.gov/thredds/dodsC/prism
+            defaults to: https://cida.usgs.gov/thredds/dodsC/prism
         tmax_var: the name of the max temp variable
             defaults to 
         tmin_var: the name of the min temp variable
@@ -43,7 +43,7 @@ def _validate_bioclim_inputs(outputfname, verbose, **kwargs):
     # May want to have this try a few times to be safe, 
     # some datasets take a long time and can time out once or twice
     try:
-        urllib2.urlopen(kwargs["OPeNDAP_URI".replace('dods','http')] + ".html")
+        urllib2.urlopen(kwargs["OPeNDAP_URI".replace('dods','https')] + ".html")
     except:
         raise Exception("Invalid or unresponsive OPeNDAP_URI provided:  " + kwargs["OPeNDAP_URI"])
     

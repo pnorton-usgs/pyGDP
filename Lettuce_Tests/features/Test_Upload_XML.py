@@ -6,7 +6,7 @@ import os, sys
 
 @step(r'I have my GDP upload URLs')
 def got_those_urls(step):
-    world.upload_URL = 'http://cida.usgs.gov/gdp/geoserver'
+    world.upload_URL = 'https://cida.usgs.gov/gdp/geoserver'
     world.filename = 'CIDA_TEST_'
 
 @step(r'I have my own, pre-encoded, upload shapefile data')

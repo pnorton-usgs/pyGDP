@@ -5,14 +5,14 @@ import os
 
 @step(r'I already know how to get my shapefile boundary from GDP')
 def its_rhode_island(step):
-    pyGDP.WPS_URL='http://cida.usgs.gov/gdp/process/WebProcessingService'
+    pyGDP.WPS_URL='https://cida.usgs.gov/gdp/process/WebProcessingService'
     world.shapefile = 'sample:CONUS_states'
     world.attribute = 'STATE'
     world.value = 'Rhode Island'
 
 @step(r'I can call a working dataset from GDP')
 def statsgo_dataset(step):
-    world.dataSetURI = 'http://cida.usgs.gov/ArcGIS/services/statsgo_muid/MapServer/WCSServer'
+    world.dataSetURI = 'https://cida.usgs.gov/ArcGIS/services/statsgo_muid/MapServer/WCSServer'
     world.dataType = '1'
 
 @step(r'When I make a Feature Categorical Grid Coverage call')

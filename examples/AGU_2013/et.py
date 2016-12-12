@@ -19,7 +19,7 @@ value='Au Sable'
 ### Land Use Land Cover
 # This dataset URI will be available here: http://cida.usgs.gov/thredds/
 # At the time of creation, this dataset was internal USGS only.
-datasetURI='http://cida-eros-thredds1.er.usgs.gov:8081/qa/thredds/dodsC/ssebopeta/monthly'
+datasetURI='https://cida.usgs.gov/thredds/dodsC/ssebopeta/monthly'
 
 # Note that pyGDP offers convenience functions to determine what these options are.
 # These were derived from the thredds server housing the data.
