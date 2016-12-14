@@ -24,4 +24,4 @@ def upload_xml_tree(step):
 
 @step(r'I see it makes the xml that will successfully upload that data')
 def will_upload_that_data(step):
-    assert_equal(len(etree.tostring(world.test_xml)), 6217)
+    assert_equal(len(etree.tostring(world.test_xml)), 6218)
