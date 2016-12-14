@@ -8,7 +8,7 @@ import pyGDP as _pyGDP
 pyGDP = _pyGDP.pyGDPwebProcessing()
 extent = [-80.0, 35.0, -81.0, 36.0]
 temp_output1 = os.path.join(tempdir, "testout1.zip")
-request1_args ={'OPeNDAP_URI': 'http://cida.usgs.gov/thredds/dodsC/new_gmo', 
+request1_args ={'OPeNDAP_URI': 'https://cida.usgs.gov/thredds/dodsC/new_gmo', 
                 'end': 2009, 
                 'prcp_var': 'pr', 
                 'tave_var': 'tas', 

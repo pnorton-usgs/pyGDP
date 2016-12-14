@@ -6,7 +6,7 @@ import os, sys
 
 @step(r'I have my GDP upload URLs')
 def got_those_urls(step):
-    world.upload_URL = 'http://cida.usgs.gov/gdp/geoserver'
+    world.upload_URL = 'https://cida.usgs.gov/gdp/geoserver'
     world.filename = 'CIDA_TEST_'
 
 @step(r'I have my own, pre-encoded, upload shapefile data')
@@ -24,4 +24,4 @@ def upload_xml_tree(step):
 
 @step(r'I see it makes the xml that will successfully upload that data')
 def will_upload_that_data(step):
-    assert_equal(len(etree.tostring(world.test_xml)), 6217)
+    assert_equal(len(etree.tostring(world.test_xml)), 6218)

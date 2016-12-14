@@ -8,10 +8,10 @@ from owslib.ows import DEFAULT_OWS_NAMESPACE, XSI_NAMESPACE, XLINK_NAMESPACE
 def get_URLs(environ_name):
     if environ_name == 'production':
     
-        urls        = {  'WFS_URL'	        :	'http://cida.usgs.gov/gdp/geoserver/wfs',
-                        'upload_URL'	        :	'http://cida.usgs.gov/gdp/geoserver',
-                        'WPS_URL'	        :	'http://cida.usgs.gov/gdp/process/WebProcessingService',
-                        'WPS_Service'	        :	'http://cida.usgs.gov/gdp/utility/WebProcessingService',
+        urls        = {  'WFS_URL'	        :	'https://cida.usgs.gov/gdp/geoserver/wfs',
+                        'upload_URL'	        :	'https://cida.usgs.gov/gdp/geoserver',
+                        'WPS_URL'	        :	'https://cida.usgs.gov/gdp/process/WebProcessingService',
+                        'WPS_Service'	        :	'https://cida.usgs.gov/gdp/utility/WebProcessingService',
                         'CSWURL'	        :	'https://www.sciencebase.gov/catalog/item/54dd2326e4b08de9379b2fb1/csw'
                       }
         
@@ -26,10 +26,10 @@ def get_URLs(environ_name):
         
     if environ_name == 'testing':
         
-        urls        = {  'WFS_URL'	        :	'http://cida-test.er.usgs.gov/gdp/geoserver/wfs',
-                      'upload_URL'	        :	'http://cida-test.er.usgs.gov/gdp/geoserver',
-                      'WPS_URL'	        :	'http://cida-test.er.usgs.gov/gdp/process/WebProcessingService',
-                      'WPS_Service'	        :	'http://cida-test.er.usgs.gov/gdp/utility/WebProcessingService',
+        urls        = {  'WFS_URL'	        :	'https://cida-test.er.usgs.gov/gdp/geoserver/wfs',
+                      'upload_URL'	        :	'https://cida-test.er.usgs.gov/gdp/geoserver',
+                      'WPS_URL'	        :	'https://cida-test.er.usgs.gov/gdp/process/WebProcessingService',
+                      'WPS_Service'	        :	'https://cida-test.er.usgs.gov/gdp/utility/WebProcessingService',
                       'CSWURL'	        :	'https://www.sciencebase.gov/catalog/item/54dd2326e4b08de9379b2fb1/csw'
                     }
         

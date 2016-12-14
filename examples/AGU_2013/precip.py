@@ -94,7 +94,7 @@ show()
 
 ### Monthly Precip
 # This daymet service is internal USGS only.
-datasetURI='http://cida.usgs.gov/thredds/dodsC/prism'
+datasetURI='https://cida.usgs.gov/thredds/dodsC/prism'
 dataType = 'ppt'
 
 outputFileName = 'AuSablePrismPrcp2000-2010.csv'

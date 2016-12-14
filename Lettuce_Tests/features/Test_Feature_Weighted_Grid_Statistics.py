@@ -88,7 +88,7 @@ def huc_shapefile(step):
 
 @step(r'I will be searching in a Landcover Dataset')
 def set_landcover_from_nationalmap(step):
-        world.dataset_uri = 'http://raster.nationalmap.gov/ArcGIS/services/TNM_LandCover/MapServer/WCSServer' # Note that this test also tests the http to dods conversion for urls.
+        world.dataset_uri = 'https://raster.nationalmap.gov/ArcGIS/services/TNM_LandCover/MapServer/WCSServer' # Note that this test also tests the http to dods conversion for urls.
         world.data_type   = '6'
 
 @step(r'I submit my FWGS without a time variable')
@@ -106,7 +106,7 @@ def timeless_output_test(step):
 
 @step(r'I have already uploaded the shapefile I want to sceincebase')
 def sciencebase_shapefile(step):
-    world.WFS_URL = 'http://www.sciencebase.gov/arcgis/services/GeospatialFabric/GeospatialFabric/MapServer/WFSServer'
+    world.WFS_URL = 'https://www.sciencebase.gov/arcgis/services/GeospatialFabric/GeospatialFabric/MapServer/WFSServer'
     world.shapefile  = 'GeospatialFabric_mows_mapping:NHDPlus_Catchment'
     world.attribute  = 'hru_id'
     world.value      = '99'
