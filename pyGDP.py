@@ -17,7 +17,7 @@ import cgi
 import sys
 import logging
 
-__version__ = '2.0.1'
+__version__ = '2.1.0'
 
 #This series of import functions brings in the namespaces, url, and pyGDP utility
 #variables from the pyGDP_Namespaces file, as well as owslib's own namespaces
