@@ -37,7 +37,7 @@ def getDataSetURI(anyText, CSWURL, BBox):
                                     entry=[title,abstract,urls]
                                     dataSetURIs.append(entry)
                             for i,dataset in enumerate(dataSetURIs):
-                                    dataSetURIs[i][2]=[uri.replace("http", "dods") if "/dodsC/" in uri else uri for uri in dataset[2]]
+                                    dataSetURIs[i][2]=[uri.replace("https", "dods").replace("http", "dods") if "/dodsC/" in uri else uri for uri in dataset[2]]
                             return dataSetURIs
                         
 def getDataType(dataSetURI, verbose):
