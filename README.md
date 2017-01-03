@@ -41,63 +41,17 @@ cd pyGDP
 python setup.py install
 lettuce Lettuce_Tests/features/ --tag=-not_working
 ```
-OR
-2.) Install using pip (first install or --upgrade dependencies):
+Anaconda and other package managers can be used, but pyGDP must be installed from source.
 
-	pip install owslib --upgrade
+For pip, do: 
+`pip install owslib==0.13.0`
 
-	pip install lxml --upgrade
+For Anaconda, do:
+`conda install -c conda-forge owslib=0.13.0`
 
-You can find libxml2 and libxlst with:
-	
-	pip install libxml2-python
-
-You can install the pyGDP git master branch (with python v.3.0 or greater):
-	
-	pip install git+https://github.com/USGS-CIDA/pyGDP.git@v1.3.1#egg=pyGDP (for the lastest stable version)
-
-	pip install git+https://github.com/USGS-CIDA/pyGDP.git@master (for the, possibly unstable, current commit)
-
-(reference http://codeinthehole.com/writing/using-pip-and-requirementstxt-to-install-from-the-head-of-a-github-branch/)
-
-OR
-3.) Install using Enthought Canopy:
-
-Find and install the lxml and owslib though Package Manager
-
-(Recommended you set Canopy as your default python environment)
-Install pyGDP as in 1.)
-
-OR
-4.) Install using Anaconda/miniconda
-Add the IOOS channel and install pyGDP:
-    conda config --add channels ioos -f
-    conda install pygdp
-
-Install pyGDP without subscribing to the channel
-    conda install -c http://conda.alpha.binstar.org/ioos/channel/main pygdp
-
-For more info on Anaconda and the IOOS channel see:
-    https://github.com/ioos/conda-recipes/wiki
-
-Having trouble compiling?
-
-Windows users can find the unofficial windows binaries of lxml, owslib, and lots of other packages at:
-
-http://www.lfd.uci.edu/~gohlke/pythonlibs/ 
-
-For OSX users, you can find installation instructions here:
-
-http://lxml.de/installation.html
-
-OR use macports
-
-OR install with homebrew (http://brew.sh/) and pip:
-
-    brew install libxml2
-
-    pip install lxml
-
+Then download the latest release of pyGDP here: [https://github.com/USGS-CIDA/pyGDP/releases](https://github.com/USGS-CIDA/pyGDP/releases), extract its contents, and run:  
+`python setup.py install`  
+with the python environment you installed owslib into active.
 
 Support
 =================
