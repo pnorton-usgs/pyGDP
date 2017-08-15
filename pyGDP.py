@@ -10,8 +10,11 @@ from pygdp import fwgs, _execute_request, feature_coverage
 from pygdp import upload_shapefile, shape_to_zip
 from GDP_XML_Generator import gdpXMLGenerator
 from owslib.wps import WebProcessingService, monitorExecution
-from StringIO import StringIO
-from urllib import urlencode
+from io import BytesIO
+try:
+    from urllib import urlencode
+except ImportError:
+    from urllib.parse import urlencode
 from time import sleep
 import cgi
 import sys
@@ -71,37 +74,37 @@ class pyGDPwebProcessing():
         self.wpsUrl = WPS_URL
         self.version = '1.1.0'
         self.wps = WebProcessingService(WPS_URL)
-        
+
     def WPSgetCapbilities(self, xml=None):
         """
         Returns a list of capabilities.
         """
         self.wps.getcapabilities(xml)
-        
+
     def WPSdescribeprocess(self, identifier, xml=None):
         """
         Returns a list describing a specific identifier/process.
         """
         self.wps.describeprocess(identifier, xml)
-    
-    #pyGDP Submit Feature	
+
+    #pyGDP Submit Feature
     def dodsReplace(self, dataSetURI, verbose=False):
         if verbose:
             ch.setLevel(logging.INFO)
         return _execute_request.dodsReplace(dataSetURI, verbose)
-    
-    def submitFeatureCoverageOPenDAP(self, geoType, dataSetURI, varID, startTime, endTime, attribute='the_geom', value=None, gmlIDs=None, 
+
+    def submitFeatureCoverageOPenDAP(self, geoType, dataSetURI, varID, startTime, endTime, attribute='the_geom', value=None, gmlIDs=None,
                                      verbose=False, coverage='true', outputfname=None, sleepSecs=10):
         if verbose:
             ch.setLevel(logging.INFO)
-        return feature_coverage.submitFeatureCoverageOPenDAP(geoType, dataSetURI, varID, startTime, endTime, attribute, value, gmlIDs, verbose, coverage, self.wfsUrl, outputfname, sleepSecs)    
-    
+        return feature_coverage.submitFeatureCoverageOPenDAP(geoType, dataSetURI, varID, startTime, endTime, attribute, value, gmlIDs, verbose, coverage, self.wfsUrl, outputfname, sleepSecs)
+
     def submitFeatureCoverageWCSIntersection(self, geoType, dataSetURI, varID, attribute='the_geom', value=None, gmlIDs=None, verbose=False,
                                              coverage='true', outputfname=None, sleepSecs=10):
         if verbose:
             ch.setLevel(logging.INFO)
         return feature_coverage.submitFeatureCoverageWCSIntersection(geoType, dataSetURI, varID, attribute, value, gmlIDs, verbose, coverage, self.wfsUrl, outputfname, sleepSecs)
-    
+
     def submitFeatureCategoricalGridCoverage(self, geoType, dataSetURI, varID, attribute='the_geom', value=None, gmlIDs=None, verbose=False,
                                              coverage='true', delim='COMMA', outputfname=None, sleepSecs=10):
         if verbose:
@@ -109,7 +112,7 @@ class pyGDPwebProcessing():
         return feature_coverage.submitFeatureCategoricalGridCoverage(geoType, dataSetURI, varID, attribute, value, gmlIDs, verbose, coverage, delim, self.wfsUrl, outputfname, sleepSecs)
 
     def submitFeatureWeightedGridStatistics(self, geoType, dataSetURI, varID, startTime, endTime, attribute='the_geom', value=None,
-                                            gmlIDs=None, verbose=None, coverage=True, delim='COMMA', stat='MEAN', grpby='STATISTIC', 
+                                            gmlIDs=None, verbose=None, coverage=True, delim='COMMA', stat='MEAN', grpby='STATISTIC',
                                             timeStep=False, summAttr=False, weighted=True, outputfname=None, sleepSecs=10):
         if verbose:
             ch.setLevel(logging.INFO)
@@ -127,22 +130,22 @@ class pyGDPwebProcessing():
     #pyGDP WFS Utilities
     def getTuples(self, shapefile, attribute):
         return shapefile_id_handle.getTuples(shapefile, attribute)
-     
+
     def getShapefiles(self):
         return shapefile_value_handle.getShapefiles(self.wfsUrl)
-    
+
     def getAttributes(self, shapefile):
         return shapefile_value_handle.getAttributes(shapefile, self.wfsUrl)
-    
+
     def getValues(self, shapefile, attribute, getTuples='false', limitFeatures=None):
         return shapefile_value_handle.getValues(shapefile, attribute, getTuples, limitFeatures, self.wfsUrl)
-    
+
     def getGMLIDs(self, shapefile, attribute, value):
         return shapefile_id_handle.getGMLIDs(shapefile, attribute, value, WFS_URL=self.wfsUrl)
-    
+
     def _getFilterID(self, tuples, value):
         return shapefile_id_handle._getFilterID(tuples, value)
-    
+
     def _getFeatureCollectionGeoType(self, geoType, attribute='the_geom', value=None, gmlIDs=None):
         return _get_geotype._getFeatureCollectionGeoType(geoType, attribute, value, gmlIDs, self.wfsUrl)
 
@@ -154,7 +157,7 @@ class pyGDPwebProcessing():
         if verbose:
             ch.setLevel(logging.INFO)
         return webdata_handle.getDataLongName(dataSetURI, verbose)
-    
+
     def getDataType(self, dataSetURI, verbose=False):
         if verbose:
             ch.setLevel(logging.INFO)
@@ -164,14 +167,14 @@ class pyGDPwebProcessing():
         if verbose:
             ch.setLevel(logging.INFO)
         return webdata_handle.getDataUnits(dataSetURI, verbose)
-    
+
     def getDataSetURI(self, anyText=None, CSWURL=CSWURL, BBox=None):
         """
         Searches a given CSW server and returns metadata content for the datasets found.
-        
+
         :param anyText: keywords to be passed to CSW get records
         :type anyText: list or None
-        
+
         """
         return  webdata_handle.getDataSetURI(anyText, CSWURL, BBox)
 
@@ -180,7 +183,7 @@ class pyGDPwebProcessing():
             ch.setLevel(logging.INFO)
         return webdata_handle.getTimeRange(dataSetURI, varID, verbose)
 
-    #Pull up docstrings. 
+    #Pull up docstrings.
     #dodsReplace.__doc__ = _execute_request.dodsReplace.__doc__
     getAttributes.__doc__ = shapefile_value_handle.getAttributes.__doc__
     getDataLongName.__doc__ = webdata_handle.getDataLongName.__doc__

@@ -4,7 +4,7 @@
 from io import BytesIO
 from owslib.wfs import WebFeatureService
 from owslib.etree import etree
-from pygdp.namespaces import upload_URL, WPS_URL, WPS_Service, CSWURL #WFS_URL, 
+from pygdp.namespaces import upload_URL, WPS_URL, WPS_Service, CSWURL #WFS_URL,
 from pygdp.namespaces import WPS_DEFAULT_VERSION, WPS_DEFAULT_SCHEMA_LOCATION, GML_SCHEMA_LOCATION
 from pygdp.namespaces import WPS_DEFAULT_NAMESPACE, CSW_NAMESPACE, WPS_DEFAULT_NAMESPACE, WFS_NAMESPACE, OGC_NAMESPACE, GML_NAMESPACE
 from pygdp.namespaces import namespaces
@@ -19,20 +19,20 @@ def getShapefiles(WFS_URL):
 
 def getAttributes(shapefile, WFS_URL):
     """
-    Given a valid shapefile(WFS Featuretype as returned by getShapefiles), this function will 
+    Given a valid shapefile(WFS Featuretype as returned by getShapefiles), this function will
     make a request for one feature from the featureType and parse out the attributes that come from
-    a namespace not associated with the normal GML schema. There may be a better way to determine 
+    a namespace not associated with the normal GML schema. There may be a better way to determine
     which are shapefile dbf attributes, but this should work pretty well.
     """
     wfs = WebFeatureService(WFS_URL, version='1.1.0')
     feature = wfs.getfeature(typename=shapefile, maxfeatures=1, propertyname=None)
-    content = BytesIO(feature.read())
+    content = BytesIO(feature.read().encode())
     gml = etree.parse(content)
     gml_root = gml.getroot()
     name_spaces = gml_root.nsmap
-    
+
     attributes = []
-    
+
     for namespace in name_spaces.values():
         if namespace not in ['http://www.opengis.net/wfs',
                              'http://www.w3.org/2001/XMLSchema-instance',
@@ -41,7 +41,7 @@ def getAttributes(shapefile, WFS_URL):
                              'http://www.opengis.net/ogc',
                              'http://www.opengis.net/ows']:
             custom_namespace = namespace
-            
+
             for element in gml.iter('{'+custom_namespace+'}*'):
                 if etree.QName(element).localname not in ['the_geom', 'Shape', shapefile.split(':')[1]]:
                     attributes.append(etree.QName(element).localname)
@@ -52,15 +52,15 @@ def getValues(shapefile, attribute, getTuples, limitFeatures, WFS_URL):
     Similar to get attributes, given a shapefile and a valid attribute this function
     will make a call to the Web Feature Services returning a list of values associated
     with the shapefile and attribute.
-    
+
     If getTuples = True, will also return the tuples of [feature:id]  along with values [feature]
     """
-    
-    wfs = WebFeatureService(WFS_URL, version='1.1.0')
-    
-    feature = wfs.getfeature(typename=shapefile, maxfeatures=limitFeatures, propertyname=[attribute])
 
-    gml = etree.parse(feature)
+    wfs = WebFeatureService(WFS_URL, version='1.1.0')
+
+    feature = wfs.getfeature(typename=shapefile, maxfeatures=limitFeatures, propertyname=[attribute])
+    content = BytesIO(feature.read().encode())
+    gml = etree.parse(content)
 
     values= []
 
