@@ -1,26 +1,24 @@
-import ast
-import sys
+from __future__ import (absolute_import, division, print_function)
+
+import os
+
 from pyGDP import __version__
 
-try:
-    from setuptools import setup
-except:
-    sys.exit('Requires distribute or setuptools')
+from setuptools import setup, find_packages
 
-from setuptools import find_packages
+rootpath = os.path.abspath(os.path.dirname(__file__))
 
-# TODO: include the examples in the sdist
+
 setup(
-    name = 'pyGDP',
-    version = __version__,
-    description = 'Interface to the USGS GeoData Portal',
-    long_description = open('README.md').read(),
+    name='pyGDP',
+    version=__version__,
+    description='Interface to the USGS GeoData Portal',
+    long_description=open('README.md').read(),
     license='Public Domain',
     maintainer='Jordan Read',  # Originally Xao Yang
     maintainer_email='jread@usgs.gov',
     py_modules=['pyGDP','GDP_XML_Generator'],
     packages=find_packages(),
-    install_requires=['setuptools'],
     url='https://github.com/USGS-CIDA/pyGDP',
     test_suite='tests',
 )
