@@ -11,6 +11,7 @@ matrix:
     env: TEST_TARGET=default
   - python: 3.6
     env: TEST_TARGET=default
+  # no lettuce on Python 3
   allow_failures:
   - python: 3.6
     env: TEST_TARGET=default
