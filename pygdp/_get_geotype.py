@@ -1,3 +1,5 @@
+from __future__ import (absolute_import, division, print_function)
+
 from pygdp import shapefile_id_handle, shapefile_value_handle
 
 #Use the import chunks from pyGDP.py to bring in the necessary namespace definitions

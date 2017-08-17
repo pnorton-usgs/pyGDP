@@ -1,9 +1,11 @@
+from __future__ import (absolute_import, division, print_function)
+
 from owslib.wps import WebProcessingService, monitorExecution
 from pygdp.namespaces import upload_URL, WPS_URL, WPS_Service, CSWURL
 from pygdp.namespaces import URL_timeout, WPS_attempts
 from time import strftime, sleep
 import sys
-from os import devnull 
+from os import devnull
 from owslib.util import log
 
 def dodsReplace(dataSetURI, verbose=False):
@@ -17,12 +19,12 @@ def _executeRequest(processid, inputs, output, verbose=True, outputFilePath=None
     the specified user inputs.
     """
     wps = WebProcessingService(WPS_URL)
-    
+
     execution = wps.execute(processid, inputs, output)
-    
-    sleepSecs=sleepSecs   
+
+    sleepSecs=sleepSecs
     err_count=1
-    
+
     while execution.isComplete()==False:
         try:
             monitorExecution(execution, sleepSecs, download=False) # monitors for success
@@ -33,40 +35,40 @@ def _executeRequest(processid, inputs, output, verbose=True, outputFilePath=None
             if err_count > WPS_attempts:
                 raise Exception('The status document failed to return, status checking has aborted. There has been a network or server issue preventing the status document from being retrieved, the request may still be running. For more information, check the status url %s' % execution.statusLocation)
             sleep(sleepSecs)
-    
+
     if outputFilePath==None:
         outputFilePath='gdp_'+processid.replace('.','-')+'_'+strftime("%Y-%m-%dT%H-%M-%S-%Z")
-        
+
     done=False
     err_count=1
     while done==False:
-        try: 
+        try:
             monitorExecution(execution, download=True,filepath=outputFilePath)
             done=True
         except Exception:
             log.warning('An error occurred while trying to download the result file, trying again.')
             err_count+=1
             sleep(sleepSecs)
-            if err_count > WPS_attempts:        
+            if err_count > WPS_attempts:
                 raise Exception("The process completed successfully, but an error occurred while downloading the result. You may be able to download the file using the link at the bottom of the status document: %s" % execution.statusLocation)
-    
+
     _check_for_execution_errors(execution)
-        
+
     return outputFilePath
-    
+
 def _check_for_execution_errors(execution):
     '''wps does not raise python errors if something goes wrong on the server side
     we will check for errors, and the succeded status and raise python
-    Exceptions as needed 
+    Exceptions as needed
     '''
     errmsg = ""
-    
+
     if execution.status == "ProcessFailed":
         errmsg = "The remote process failed!\n"
-    
+
     if execution.errors:
         #something went wrong, it would be a shame to pass silently
         errmsg += "\n".join([err.text for err in execution.errors])
-        
+
     if errmsg:
         raise Exception(errmsg)

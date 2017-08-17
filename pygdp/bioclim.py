@@ -1,3 +1,5 @@
+from __future__ import (absolute_import, division, print_function)
+
 from pygdp import _execute_request
 from pygdp import webdata_handle
 import datetime

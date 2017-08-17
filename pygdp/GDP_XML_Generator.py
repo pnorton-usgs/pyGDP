@@ -1,3 +1,5 @@
+from __future__ import (absolute_import, division, print_function)
+
 from owslib.etree import etree
 import owslib.util as util
 
@@ -11,32 +13,32 @@ class gdpXMLGenerator():
     as well as the xml post request tree template.
     This class serves no other functions.
     """
-    
+
     def _init_(self):
         pass
-    
+
     def _subElement(self, root, elementName):
         return etree.SubElement(root, util.nspath_eval(elementName, namespaces))
-    
+
     def getUploadXMLtree(self, filename, wfsUrl, filedata):
-        
+
         # generate the POST XML request
-        #<wps:Execute xmlns:wps="http://www.opengis.net/wps/1.0.0" 
-        #             xmlns:ows="http://www.opengis.net/ows/1.1" 
-        #             xmlns:xlink="http://www.w3.org/1999/xlink" 
-        #             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-        #             service="WPS" 
-        #             version="1.0.0" 
-        #             xsi:schemaLocation="http://www.opengis.net/wps/1.0.0 http://schemas.opengis.net/wps/1.0.0/wpsExecute_request.xsd">       
+        #<wps:Execute xmlns:wps="http://www.opengis.net/wps/1.0.0"
+        #             xmlns:ows="http://www.opengis.net/ows/1.1"
+        #             xmlns:xlink="http://www.w3.org/1999/xlink"
+        #             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        #             service="WPS"
+        #             version="1.0.0"
+        #             xsi:schemaLocation="http://www.opengis.net/wps/1.0.0 http://schemas.opengis.net/wps/1.0.0/wpsExecute_request.xsd">
         root = etree.Element(util.nspath_eval('wps:Execute', namespaces), nsmap=namespaces)
         root.set('service', 'WPS')
         root.set('version', WPS_DEFAULT_VERSION)
         root.set(util.nspath_eval('xsi:schemaLocation', namespaces), '%s %s' % (namespaces['wps'], WPS_DEFAULT_SCHEMA_LOCATION) )
-        
+
         # <ows:Identifier>gov.usgs.cida.gdp.wps.algorithm.discovery.ListOpendapGrids</ows:Identifier>
         identifierElement = self._subElement(root, 'ows:Identifier')
         identifierElement.text = 'gov.usgs.cida.gdp.wps.algorithm.filemanagement.ReceiveFiles'
-        
+
         # <wps:DataInputs>
         #    <wps:Input>
         #        <ows:Identifier>filename</ows:Identifier>
@@ -53,18 +55,18 @@ class gdpXMLGenerator():
         inputElements = self._subElement(dataInputsElement, 'wps:Input')
         identifierElement = self._subElement(inputElements, 'ows:Identifier')
         identifierElement.text = 'filename'
-        
+
         dataElement = self._subElement(inputElements,'wps:Data')
         literalElement = self._subElement(dataElement, 'wps:LiteralData')
         literalElement.text = filename
-        
+
         inputElements = self._subElement(dataInputsElement, 'wps:Input')
         identifierElement = self._subElement(inputElements, 'ows:Identifier')
         identifierElement.text = 'wfs-url'
         dataElement = self._subElement(inputElements,'wps:Data')
         literalElement = self._subElement(dataElement,'wps:LiteralData')
         literalElement.text = wfsUrl
-    
+
         # adding complex information
         inputElements = self._subElement(dataInputsElement, 'wps:Input')
         identifierElement = self._subElement(inputElements, 'ows:Identifier')
@@ -74,7 +76,7 @@ class gdpXMLGenerator():
                                                   attrib={"mimeType":"application/x-zipped-shp", "encoding":"Base64"} )
         # sets filedata
         complexDataElement.text = filedata
-        
+
         # <wps:ResponseForm>
         #    <wps:ResponseDocument>
         #        <ows:Output>
@@ -93,27 +95,27 @@ class gdpXMLGenerator():
         outputElement = self._subElement(responseDocElement, 'wps:Output')
         identifierElement = self._subElement(outputElement,'ows:Identifier')
         identifierElement.text = 'featuretype'
-        
+
         return root
 
     def getXMLRequestTree(self, dataSetURI, algorithm, method, varID=None, verbose=False):
-        
-        #<wps:Execute xmlns:wps="http://www.opengis.net/wps/1.0.0" 
-        #             xmlns:ows="http://www.opengis.net/ows/1.1" 
-        #             xmlns:xlink="http://www.w3.org/1999/xlink" 
-        #             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-        #             service="WPS" 
-        #             version="1.0.0" 
-        #             xsi:schemaLocation="http://www.opengis.net/wps/1.0.0 http://schemas.opengis.net/wps/1.0.0/wpsExecute_request.xsd">       
+
+        #<wps:Execute xmlns:wps="http://www.opengis.net/wps/1.0.0"
+        #             xmlns:ows="http://www.opengis.net/ows/1.1"
+        #             xmlns:xlink="http://www.w3.org/1999/xlink"
+        #             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        #             service="WPS"
+        #             version="1.0.0"
+        #             xsi:schemaLocation="http://www.opengis.net/wps/1.0.0 http://schemas.opengis.net/wps/1.0.0/wpsExecute_request.xsd">
         root = etree.Element(util.nspath_eval('wps:Execute', namespaces), nsmap=namespaces)
         root.set('service', 'WPS')
         root.set('version', WPS_DEFAULT_VERSION)
         root.set(util.nspath_eval('xsi:schemaLocation', namespaces), '%s %s' % (namespaces['wps'], WPS_DEFAULT_SCHEMA_LOCATION) )
-        
+
         # <ows:Identifier>gov.usgs.cida.gdp.wps.algorithm.discovery.ListOpendapGrids</ows:Identifier>
         identifierElement = etree.SubElement(root, util.nspath_eval('ows:Identifier', namespaces))
         identifierElement.text = algorithm
-        
+
         # <wps:DataInputs>
         #    <wps:Input>
         #        <ows:Identifier>catalog-url</ows:Identifier>
@@ -133,7 +135,7 @@ class gdpXMLGenerator():
         dataElement = etree.SubElement(inputElements, util.nspath_eval('wps:Data', namespaces))
         literalElement = etree.SubElement(dataElement, util.nspath_eval('wps:LiteralData', namespaces))
         literalElement.text = dataSetURI
-        
+
         if method == 'getDataSetTime':
             inputElements = etree.SubElement(dataInputsElement, util.nspath_eval('wps:Input', namespaces))
             identifierElement = etree.SubElement(inputElements, util.nspath_eval('ows:Identifier', namespaces))
@@ -141,14 +143,14 @@ class gdpXMLGenerator():
             dataElement = etree.SubElement(inputElements, util.nspath_eval('wps:Data', namespaces))
             literalElement = etree.SubElement(dataElement, util.nspath_eval('wps:LiteralData', namespaces))
             literalElement.text = varID
-        
+
         inputElements = etree.SubElement(dataInputsElement, util.nspath_eval('wps:Input', namespaces))
         identifierElement = etree.SubElement(inputElements, util.nspath_eval('ows:Identifier', namespaces))
         identifierElement.text = 'allow-cached-response'
         dataElement = etree.SubElement(inputElements, util.nspath_eval('wps:Data', namespaces))
         literalElement = etree.SubElement(dataElement, util.nspath_eval('wps:LiteralData', namespaces))
         literalElement.text = 'false'
-        
+
         # <wps:ResponseForm storeExecuteResponse=true status=true>
         #    <wps:ResponseDocument>
         #        <ows:Output asReference=true>
@@ -161,6 +163,5 @@ class gdpXMLGenerator():
         outputElement = etree.SubElement(responseDocElement, util.nspath_eval('wps:Output', namespaces), attrib={'asReference': 'false'})
         identifierElement = etree.SubElement(outputElement, util.nspath_eval('ows:Identifier', namespaces))
         identifierElement.text = 'result_as_xml'
-        
+
         return root
-    

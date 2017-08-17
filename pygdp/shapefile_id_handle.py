@@ -1,3 +1,5 @@
+from __future__ import (absolute_import, division, print_function)
+
 from pygdp import shapefile_value_handle
 
 def getGMLIDs(shapefile, attribute, value, WFS_URL):
