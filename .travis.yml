@@ -16,8 +16,14 @@ matrix:
   - python: 3.6
     env: TEST_TARGET=default
 
-install:
+before_install:
     - pip install -r requirements.txt -r requirements-dev.txt
 
+# Test source distribution.
+install:
+  - python setup.py sdist && version=$(python setup.py --version) && pushd dist  && pip install pyGDP-${version}.tar.gz && popd
+
+
 script:
-  - lettuce --tag=-not_working Lettuce_Tests
+  - cp -r Lettuce_Tests/ /tmp
+  - cd /tmp && lettuce --tag=-not_working Lettuce_Tests
