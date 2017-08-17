@@ -1,8 +1,8 @@
-import pyGDP
+from pygdp import pyGDP
 import pprint
 """
 This example script calls into the geoserver to obtain
-the name of the shapefile 'sample:CONUS_States' searches for PRISM data 
+the name of the shapefile 'sample:CONUS_States' searches for PRISM data
 and submits a featureWeightedGridStatistics request into GDP.
 """
 

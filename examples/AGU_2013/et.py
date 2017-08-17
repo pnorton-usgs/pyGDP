@@ -3,7 +3,7 @@ from matplotlib.ticker import LinearLocator
 import numpy
 import pylab
 from pylab import plot, show
-import pyGDP
+from pygdp import pyGDP
 import array
 import os
 from datetime import datetime

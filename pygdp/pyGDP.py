@@ -10,7 +10,7 @@ from pygdp import shapefile_value_handle, shapefile_id_handle, _get_geotype
 from pygdp import webdata_handle, _webdata_xml_generate
 from pygdp import fwgs, _execute_request, feature_coverage
 from pygdp import upload_shapefile, shape_to_zip
-from GDP_XML_Generator import gdpXMLGenerator
+from pygdp.GDP_XML_Generator import gdpXMLGenerator
 from owslib.wps import WebProcessingService, monitorExecution
 from io import BytesIO
 try:

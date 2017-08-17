@@ -3,7 +3,7 @@ from __future__ import (absolute_import, division, print_function)
 from owslib.wps import WebProcessingService
 from io import BytesIO
 from owslib.etree import etree
-from GDP_XML_Generator import gdpXMLGenerator
+from pygdp.GDP_XML_Generator import gdpXMLGenerator
 from pygdp import _execute_request
 import sys
 

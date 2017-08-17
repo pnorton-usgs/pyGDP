@@ -1,11 +1,11 @@
 from lettuce import *
-import pyGDP
+from pygdp import pyGDP
 import os
 from nose.tools import assert_equal
 
-@step(r'I know my HUC_8 value') 
+@step(r'I know my HUC_8 value')
 def define_HUC_shapefile(step):
-    
+
     world.shapefile = 'sample:simplified_huc8'
     world.attribute = 'HUC_8'
     world.value = '08010211'
@@ -27,5 +27,5 @@ def create_web_processing_object():
 @step(r'I see exactly the file that I expected')
 def run_WCS_file_check(step):
     assert_equal(os.path.getsize(world.output_file), 1311757)
-    
-    
+
+

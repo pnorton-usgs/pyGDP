@@ -1,4 +1,4 @@
-import pyGDP
+from pygdp import pyGDP
 from lettuce import *
 from nose.tools import assert_equal
 from nose.tools import assert_not_equal
@@ -13,7 +13,7 @@ def point_to_geoserver(step):
 def get_shapefiles(step):
     test_pyGDP = create_web_processing_object()
     world.shapefiles = test_pyGDP.getShapefiles()
-    
+
 def create_web_processing_object():
     new_web_processing = pyGDP.pyGDPwebProcessing()
     return new_web_processing
@@ -53,7 +53,7 @@ def wisconsin_is_a_state(step):
 @step(r'I know that one of those states is "Wisconsin"')
 def on_wisconsin(step):
     world.value ='Wisconsin'
-      
+
 @step(r'I ask for the Feature Collection GeoType of Wisconsin in CONUS')
 def ask_and_you_shall_recieve(step):
     test_pyGDP = create_web_processing_object()

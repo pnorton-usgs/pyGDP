@@ -1,4 +1,4 @@
-from pyGDP import gdpXMLGenerator
+from pygdp.pyGDP import gdpXMLGenerator
 from owslib.etree import etree
 from nose.tools import assert_equal
 from lettuce import *
@@ -16,7 +16,7 @@ def read_in_the_data(step):
     encode_data = open(test_file, 'r')
     world.file_data = encode_data.read()
     encode_data.close()
-    
+
 @step(r'I use the xmlGen objects getUploadXMLtree method')
 def upload_xml_tree(step):
     xml_gen = gdpXMLGenerator()

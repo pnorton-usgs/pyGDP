@@ -1,4 +1,4 @@
-import pyGDP
+from pygdp import pyGDP
 import matplotlib.dates as mdates
 import numpy as np
 
@@ -21,8 +21,8 @@ timeEnd = '1979-01-23T00:00:00.000Z'
 
 print 'Processing request.'
 outputPath = pyGDP.submitFeatureWeightedGridStatistics(shapefile, dataSet, dataType, timeBegin, timeEnd, user_attribute, user_value, verbose=True)
-        
+
 jd,precip =np.loadtxt(outputPath,unpack=True,skiprows=3,delimiter=',',
-    converters={0: mdates.strpdate2num('%Y-%m-%dT%H:%M:%SZ')}) 
+    converters={0: mdates.strpdate2num('%Y-%m-%dT%H:%M:%SZ')})
 
 print precip[0:100]

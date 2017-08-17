@@ -1,4 +1,4 @@
-import pyGDP
+from pygdp import pyGDP
 from lettuce import *
 from nose.tools import assert_equal
 import os
@@ -44,7 +44,7 @@ def basic_tests_for_basic_outputs(step):
 
 @step(r'I should get the unweighted basic output that I expect')
 def basic_tests_for_basic_outputs(step):
-    assert_equal(os.path.getsize(world.output_file_unweighted), 133)        
+    assert_equal(os.path.getsize(world.output_file_unweighted), 133)
 
 @step(r'I will be using "ppt" and "tmx" in my favorite "prism" datatset')
 def multi_prism_data(step):
@@ -66,14 +66,14 @@ def multi_feature_weighted_grid_statistics(step):
     world.output_file = test_pyGDP.submitFeatureWeightedGridStatistics(world.shapefile, world.dataset_uri, world.data_type, world.time_start, \
                                    world.time_end, world.attribute, world.value, gmlIDs, verbose, coverage, \
                                    delim, world.stats, outputfname='testFWGS_testfile_multitest', sleepSecs=5)
-    
+
 @step(r'I should get the multi-stat output that I expect')
 def tests_for_multi_outputs(step):
     assert_equal(os.path.getsize(world.output_file), 377)
 
 @step(r'I fill out every variable and submit my FWGS call')
 def full_feature_weighted_grid_statistics(step):
-    
+
     test_pyGDP = create_web_processing_object()
     outputFile_handle = test_pyGDP.submitFeatureWeightedGridStatistics(geoType=world.shapefile, dataSetURI=world.dataset_uri, \
                     varID=world.data_type, startTime=world.time_start, endTime=world.time_end, attribute=world.attribute, \

@@ -1,6 +1,6 @@
 from lettuce import *
 from nose.tools import assert_equal, assert_true
-import pyGDP
+from pygdp import pyGDP
 import warnings
 
 @step(r'I define the keyword as "prism climate group"')
@@ -19,7 +19,7 @@ def invoke_getDataSetURI(step):
 def assert_uri_equalities(step):
     assert_true(len(world.data_set_uris) > 0)
     assert_equal(world.data_set_uris[1][2][0], 'dods://cida.usgs.gov/thredds/dodsC/prism')
-   
+
 def create_web_processing_object():
     new_web_processing = pyGDP.pyGDPwebProcessing()
     return new_web_processing

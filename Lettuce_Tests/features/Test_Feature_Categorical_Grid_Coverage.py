@@ -1,4 +1,4 @@
-import pyGDP
+from pygdp import pyGDP
 from lettuce import *
 from nose.tools import assert_equal
 import os
@@ -23,7 +23,7 @@ def test_FCGC(step):
 def create_web_processing_object():
     new_web_processing = pyGDP.pyGDPwebProcessing()
     return new_web_processing
-    
+
 @step(r'I can see the returned file is exactly what I would expect')
 def check_test_FCGC(step):
     assert_equal(os.path.getsize(world.test_output_file_handle), 650)
