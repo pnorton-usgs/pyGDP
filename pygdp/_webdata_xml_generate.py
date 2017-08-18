@@ -7,6 +7,7 @@ import sys
 
 from pygdp.namespaces import WPS_Service
 
+
 def _generateRequest(dataSetURI, algorithm, method, varID, verbose):
     """
     Takes a dataset uri, algorithm, method, and datatype. This function will generate a simple XML document
@@ -36,6 +37,7 @@ def _generateRequest(dataSetURI, algorithm, method, varID, verbose):
         seekterm = '{xsd/gdpdatatypecollection-1.0.xsd}unitsstring'
 
     return _parseXMLNodesForTagText(execution.response, seekterm)
+
 
 def _parseXMLNodesForTagText(xml, tag):
     """

@@ -3,6 +3,7 @@ from owslib import fes
 
 from pygdp import _webdata_xml_generate
 
+
 def getDataSetURI(anyText, CSWURL, BBox):
     """
 
@@ -24,28 +25,31 @@ def getDataSetURI(anyText, CSWURL, BBox):
         constraints = []
     else:
         constraints = [fes.PropertyIsLike(propertyname='csw:AnyText', literal=literal) for literal in anyText]
-    csw.getrecords2(constraints=constraints, outputschema='http://www.isotc211.org/2005/gmd', esn='full', maxrecords=100)
-    dataSetURIs = [['title','abstract',['urls']]]
+    csw.getrecords2(constraints=constraints, outputschema='http://www.isotc211.org/2005/gmd', esn='full',
+                    maxrecords=100)
+    dataSetURIs = [['title', 'abstract', ['urls']]]
     for rec in csw.records:
-            title=csw.records[rec].identification.title
-            abstract=csw.records[rec].identification.abstract
-            urls = []
+        title = csw.records[rec].identification.title
+        abstract = csw.records[rec].identification.abstract
+        urls = []
+        try:
+            for onlineresource in range(len(csw.records[rec].distribution.online)):
+                urls.append(csw.records[rec].distribution.online[onlineresource].url)
+        except AttributeError:
+            pass
+        for ident in range(len(csw.records[rec].identificationinfo)):
             try:
-                    for onlineresource in range(len(csw.records[rec].distribution.online)):
-                            urls.append(csw.records[rec].distribution.online[onlineresource].url)
+                for operation in range(len(csw.records[rec].identificationinfo[ident].operations)):
+                    urls.append(csw.records[rec].identificationinfo[ident].operations[0]['connectpoint'][0].url)
             except AttributeError:
                 pass
-            for ident in range(len(csw.records[rec].identificationinfo)):
-                    try:
-                            for operation in range(len(csw.records[rec].identificationinfo[ident].operations)):
-                                    urls.append(csw.records[rec].identificationinfo[ident].operations[0]['connectpoint'][0].url)
-                    except AttributeError:
-                        pass
-            entry=[title,abstract,urls]
-            dataSetURIs.append(entry)
-    for i,dataset in enumerate(dataSetURIs):
-            dataSetURIs[i][2]=[uri.replace("https", "dods").replace("http", "dods") if "/dodsC/" in uri else uri for uri in dataset[2]]
+        entry = [title, abstract, urls]
+        dataSetURIs.append(entry)
+    for i, dataset in enumerate(dataSetURIs):
+        dataSetURIs[i][2] = [uri.replace("https", "dods").replace("http", "dods") if "/dodsC/" in uri else uri for uri
+                             in dataset[2]]
     return dataSetURIs
+
 
 def getDataType(dataSetURI, verbose):
     """
@@ -54,7 +58,9 @@ def getDataType(dataSetURI, verbose):
     """
 
     algorithm = 'gov.usgs.cida.gdp.wps.algorithm.discovery.ListOpendapGrids'
-    return _webdata_xml_generate._generateRequest(dataSetURI, algorithm, method='getDataType', varID=None, verbose=verbose)
+    return _webdata_xml_generate._generateRequest(dataSetURI, algorithm, method='getDataType', varID=None,
+                                                  verbose=verbose)
+
 
 def getDataLongName(dataSetURI, verbose):
     """
@@ -63,7 +69,9 @@ def getDataLongName(dataSetURI, verbose):
         """
 
     algorithm = 'gov.usgs.cida.gdp.wps.algorithm.discovery.ListOpendapGrids'
-    return _webdata_xml_generate._generateRequest(dataSetURI, algorithm, method='getDataLongName', varID=None, verbose=verbose)
+    return _webdata_xml_generate._generateRequest(dataSetURI, algorithm, method='getDataLongName', varID=None,
+                                                  verbose=verbose)
+
 
 def getDataUnits(dataSetURI, verbose):
     """
@@ -72,7 +80,9 @@ def getDataUnits(dataSetURI, verbose):
         """
 
     algorithm = 'gov.usgs.cida.gdp.wps.algorithm.discovery.ListOpendapGrids'
-    return _webdata_xml_generate._generateRequest(dataSetURI, algorithm, method='getDataUnits', varID=None, verbose=verbose)
+    return _webdata_xml_generate._generateRequest(dataSetURI, algorithm, method='getDataUnits', varID=None,
+                                                  verbose=verbose)
+
 
 def getTimeRange(dataSetURI, varID, verbose):
     """
@@ -82,4 +92,5 @@ def getTimeRange(dataSetURI, varID, verbose):
     """
 
     algorithm = 'gov.usgs.cida.gdp.wps.algorithm.discovery.GetGridTimeRange'
-    return _webdata_xml_generate._generateRequest(dataSetURI, algorithm, method='getDataSetTime', varID=varID, verbose=verbose)
+    return _webdata_xml_generate._generateRequest(dataSetURI, algorithm, method='getDataSetTime', varID=varID,
+                                                  verbose=verbose)
