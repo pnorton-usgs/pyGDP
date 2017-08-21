@@ -3,7 +3,7 @@ from matplotlib.ticker import LinearLocator
 import numpy
 import pylab
 from pylab import plot, show
-import pyGDP
+from pygdp import pyGDP
 import array
 import os
 from datetime import datetime
@@ -28,7 +28,7 @@ timeStart = '2000-01-01T00:00:00.000Z'
 timeEnd   = '2100-01-01T00:00:00.000Z'
 
 outputFileName = 'HousingDensityAuSable2000-2100.csv'
-# 
+#
 # outputFile_handle = pyGDP.submitFeatureWeightedGridStatistics(shapefile, datasetURI, dataType, timeStart, timeEnd, attribute, value,verbose=True)
 # os.rename(outputFile_handle,outputFileName)
 

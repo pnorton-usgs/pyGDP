@@ -1,7 +1,9 @@
+from __future__ import (absolute_import, division, print_function)
+
 import base64
 import os
 from owslib.etree import etree
-from GDP_XML_Generator import gdpXMLGenerator
+from pygdp.GDP_XML_Generator import gdpXMLGenerator
 from owslib.wps import WebProcessingService, monitorExecution
 from pygdp.namespaces import upload_URL, WPS_URL, WPS_Service, CSWURL
 

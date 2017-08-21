@@ -2,7 +2,7 @@ import matplotlib.dates as mdates
 import numpy
 import pylab
 from pylab import plot, show
-import pyGDP
+from pygdp import pyGDP
 import array
 import os
 

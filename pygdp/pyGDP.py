@@ -1,3 +1,5 @@
+from __future__ import (absolute_import, division, print_function)
+
 # dependencies: lxml.etree, owslib
 # =============================================================================
 # Authors : Xao Yang, Jordan Walker, Jordan Read, Curtis Price, David Blodgett
@@ -8,7 +10,7 @@ from pygdp import shapefile_value_handle, shapefile_id_handle, _get_geotype
 from pygdp import webdata_handle, _webdata_xml_generate
 from pygdp import fwgs, _execute_request, feature_coverage
 from pygdp import upload_shapefile, shape_to_zip
-from GDP_XML_Generator import gdpXMLGenerator
+from pygdp.GDP_XML_Generator import gdpXMLGenerator
 from owslib.wps import WebProcessingService, monitorExecution
 from io import BytesIO
 try:
@@ -20,12 +22,10 @@ import cgi
 import sys
 import logging
 
-__version__ = '2.1.1'
-
-#This series of import functions brings in the namespaces, url, and pyGDP utility
-#variables from the pyGDP_Namespaces file, as well as owslib's own namespaces
-#Check out the pyGDP_Namespaces file to see precisely how things are
-#what URLs pyGDP is pointing to. It's good to be aware.
+# This series of import functions brings in the namespaces, url, and pyGDP utility
+# variables from the pyGDP_Namespaces file, as well as owslib's own namespaces
+# Check out the pyGDP_Namespaces file to see precisely how things are
+# what URLs pyGDP is pointing to. It's good to be aware.
 from owslib.ows import DEFAULT_OWS_NAMESPACE, XSI_NAMESPACE, XLINK_NAMESPACE
 from pygdp.namespaces import upload_URL, WPS_URL, WPS_Service, CSWURL
 from pygdp.namespaces import WPS_DEFAULT_VERSION, WPS_DEFAULT_SCHEMA_LOCATION, GML_SCHEMA_LOCATION

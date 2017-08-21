@@ -1,4 +1,4 @@
-import pyGDP
+from pygdp import pyGDP
 
 pyGDP = pyGDP.pyGDPwebProcessing()
 """
@@ -49,7 +49,7 @@ timeRange = pyGDP.getTimeRange(dataSetURI, dataType)
 for t in timeRange:
     print t
 
-# Execute a GeatureWeightedGridStatistics request and return the path to the output file. 
+# Execute a GeatureWeightedGridStatistics request and return the path to the output file.
 # Note that this is for one time step but could be for multiple.
 outputfile = pyGDP.submitFeatureWeightedGridStatistics(shapefile, dataSetURI, dataType, timeRange[0], timeRange[0], usr_attribute, value, verbose=True)
 print outputfile

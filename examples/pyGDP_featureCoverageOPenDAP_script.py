@@ -1,4 +1,4 @@
-import pyGDP
+from pygdp import pyGDP
 
 pyGDP = pyGDP.pyGDPwebProcessing()
 

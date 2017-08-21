@@ -1,3 +1,5 @@
+from __future__ import (absolute_import, division, print_function)
+
 import os
 from owslib.ows import DEFAULT_OWS_NAMESPACE, XSI_NAMESPACE, XLINK_NAMESPACE
 #Global URLs for GDP and services
@@ -7,38 +9,38 @@ from owslib.ows import DEFAULT_OWS_NAMESPACE, XSI_NAMESPACE, XLINK_NAMESPACE
 #Here they are prepared to be sent to pyGDP.
 def get_URLs(environ_name):
     if environ_name == 'production':
-    
+
         urls        = {  'WFS_URL'	        :	'https://cida.usgs.gov/gdp/geoserver/wfs',
                         'upload_URL'	        :	'https://cida.usgs.gov/gdp/geoserver',
                         'WPS_URL'	        :	'https://cida.usgs.gov/gdp/process/WebProcessingService',
                         'WPS_Service'	        :	'https://cida.usgs.gov/gdp/utility/WebProcessingService',
                         'CSWURL'	        :	'https://www.sciencebase.gov/catalog/item/54dd2326e4b08de9379b2fb1/csw'
                       }
-        
+
     if environ_name == 'development':
-        
+
         urls        = { 'WFS_URL'	        :	'http://cidasddvasgdp.cr.usgs.gov:8082/gdp/geoserver/wfs',
                         'upload_URL'        	:	'http://cidasddvasgdp.cr.usgs.gov:8082/gdp/geoserver',
                         'WPS_URL'	        :	'http://cidasddvasgdp.cr.usgs.gov:8080/gdp-process-wps/WebProcessingService',
-                        'WPS_Service'	        :	'http://cidasddvasgdp.cr.usgs.gov:8080/gdp-utility-wps/WebProcessingService?Service=WPS&Request=GetCapabilities',	
+                        'WPS_Service'	        :	'http://cidasddvasgdp.cr.usgs.gov:8080/gdp-utility-wps/WebProcessingService?Service=WPS&Request=GetCapabilities',
                         'CSWURL'	        :	'https://www.sciencebase.gov/catalog/item/54dd2326e4b08de9379b2fb1/csw'
                       }
-        
+
     if environ_name == 'testing':
-        
+
         urls        = {  'WFS_URL'	        :	'https://cida-test.er.usgs.gov/gdp/geoserver/wfs',
                       'upload_URL'	        :	'https://cida-test.er.usgs.gov/gdp/geoserver',
                       'WPS_URL'	        :	'https://cida-test.er.usgs.gov/gdp/process/WebProcessingService',
                       'WPS_Service'	        :	'https://cida-test.er.usgs.gov/gdp/utility/WebProcessingService',
                       'CSWURL'	        :	'https://www.sciencebase.gov/catalog/item/54dd2326e4b08de9379b2fb1/csw'
                     }
-        
+
     if environ_name == 'custom':
-        
-        urls    =      { 'WFS_URL'	        :	'your input here',	
+
+        urls    =      { 'WFS_URL'	        :	'your input here',
                         'upload_URL'	        :	'your input here',
                         'WPS_URL'	        :	'your input here',
-                        'WPS_Service'	:       	'your input here',	
+                        'WPS_Service'	:       	'your input here',
                         'CSWURL'	        :	'your input here'
                        }
     return urls
