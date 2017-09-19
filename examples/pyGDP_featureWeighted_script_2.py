@@ -1,4 +1,6 @@
+from __future__ import print_function
 import pyGDP
+
 '''
 Shows GDP workflow in using specific values of attributes from a shapefile
 that already exists on the GDP server.
