@@ -1,7 +1,7 @@
 from lettuce import *
 from nose.tools import assert_equal
 import os
-from pygdp import pyGDP
+import pyGDP
 
 
 @step(r'I have a test shapefile and all its associated components')

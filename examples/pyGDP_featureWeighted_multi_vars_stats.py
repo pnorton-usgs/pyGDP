@@ -22,5 +22,6 @@ delim = 'COMMA'
 stats = ['MEAN', 'STD_DEV']
 
 print('Processing request.')
-outputPath = pyGDP.submitFeatureWeightedGridStatistics(shapefile, dataSet, dataType, timeBegin, timeEnd, user_attribute,
-                                                       user_value, gmlIDs, verbose, coverage, delim, stats)
+outputPath = pyGDP.submitFeatureWeightedGridStatistics(shapefile, dataSet, dataType, timeBegin, timeEnd,
+                                                       user_attribute, user_value, gmlIDs, verbose,
+                                                       coverage, delim, stats)

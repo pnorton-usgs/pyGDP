@@ -1,4 +1,4 @@
-from pygdp import pyGDP
+import pyGDP
 '''
 Shows GDP workflow in using specific values of attributes from a shapefile
 that already exists on the GDP server.

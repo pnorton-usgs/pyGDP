@@ -1,8 +1,9 @@
-from pygdp.pyGDP import gdpXMLGenerator
+from pyGDP import gdpXMLGenerator
 from owslib.etree import etree
 from nose.tools import assert_equal
 from lettuce import *
-import os, sys
+import os
+# import sys
 
 
 @step(r'I have my GDP upload URLs')

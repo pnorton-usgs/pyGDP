@@ -4,7 +4,7 @@ from nose.tools import assert_equal
 
 @step(r'Given I want to access shapefiles on some bogus server')
 def point_to_bogus_geoserver(step):
-    from pygdp import pyGDP
+    import pyGDP
     test_pyGDP = pyGDP.pyGDPwebProcessing(wfs_url='https://bogus/bogy/geoserver/wfs')
     world.bogus_wfs = test_pyGDP.wfsUrl
 

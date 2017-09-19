@@ -1,4 +1,4 @@
-from pygdp import pyGDP
+import pyGDP
 import pprint
 
 """

@@ -1,5 +1,5 @@
-from pygdp import pyGDP
-from pygdp import bioclim
+# import pyGDP
+from pyGDP import bioclim
 from lettuce import *
 from nose.tools import assert_equal
 import os

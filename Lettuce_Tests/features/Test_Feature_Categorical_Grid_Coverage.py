@@ -1,4 +1,4 @@
-from pygdp import pyGDP
+import pyGDP
 from lettuce import *
 from nose.tools import assert_equal
 import os

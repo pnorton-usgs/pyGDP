@@ -1,5 +1,5 @@
 from lettuce import *
-from pygdp import pyGDP
+import pyGDP
 import os
 from nose.tools import assert_equal
 

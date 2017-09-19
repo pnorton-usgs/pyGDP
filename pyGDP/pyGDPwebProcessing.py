@@ -1,52 +1,29 @@
-from __future__ import (absolute_import, division, print_function)
-
-# dependencies: lxml.etree, owslib
-# =============================================================================
-# Authors : Xao Yang, Jordan Walker, Jordan Read, Curtis Price, David Blodgett
-#
-# Contact email: jread@usgs.gov
-# =============================================================================
-from pygdp import shapefile_value_handle, shapefile_id_handle, _get_geotype
-from pygdp import webdata_handle, _webdata_xml_generate
-from pygdp import fwgs, _execute_request, feature_coverage
-from pygdp import upload_shapefile, shape_to_zip
-from pygdp.GDP_XML_Generator import gdpXMLGenerator
-from owslib.wps import WebProcessingService, monitorExecution
-from io import BytesIO
-
-try:
-    from urllib import urlencode
-except ImportError:
-    from urllib.parse import urlencode
-# from time import sleep
-# import cgi
-# import sys
 import logging
 
-# This series of import functions brings in the namespaces, url, and pyGDP utility
-# variables from the pyGDP_Namespaces file, as well as owslib's own namespaces
-# Check out the pyGDP_Namespaces file to see precisely how things are
-# what URLs pyGDP is pointing to. It's good to be aware.
-from owslib.ows import DEFAULT_OWS_NAMESPACE, XSI_NAMESPACE, XLINK_NAMESPACE
-from pygdp.namespaces import upload_URL, WPS_URL, WPS_Service, CSWURL
-from pygdp.namespaces import WPS_DEFAULT_VERSION, WPS_DEFAULT_SCHEMA_LOCATION, GML_SCHEMA_LOCATION
-from pygdp.namespaces import WPS_DEFAULT_NAMESPACE, CSW_NAMESPACE, WPS_DEFAULT_NAMESPACE, WFS_NAMESPACE, OGC_NAMESPACE, \
-    GML_NAMESPACE
-from pygdp.namespaces import DRAW_NAMESPACE, SMPL_NAMESPACE, UPLD_NAMESPACE
-from pygdp.namespaces import URL_timeout, WPS_attempts
-from pygdp.namespaces import namespaces
-from pygdp.namespaces import WFS_URL
+from . import shapefile_value_handle, shapefile_id_handle, _get_geotype
+from . import webdata_handle, _webdata_xml_generate
+from . import fwgs, _execute_request, feature_coverage
+from . import upload_shapefile, shape_to_zip
+
+# try:
+#     from urllib import urlencode
+# except ImportError:
+#     from urllib.parse import urlencode
+
+from .namespaces import WPS_URL, CSW_URL
+from .namespaces import WFS_URL
+
+from owslib.wps import WebProcessingService
 
 try:
     from config import PYGDP_INFO_LOGGING
 except ImportError:
     PYGDP_INFO_LOGGING = False
+
 if not PYGDP_INFO_LOGGING:
     logging.disable(logging.INFO)  # silence all log messages at the INFO level and below
 else:
     logging.disable(logging.NOTSET)
-
-__version__ = '2.1.1'
 
 # Get OWSLib Logger
 logger = logging.getLogger('owslib')
@@ -103,16 +80,16 @@ class pyGDPwebProcessing():
         return _execute_request.dodsReplace(dataSetURI, verbose)
 
     def submitFeatureCoverageOPenDAP(self, geoType, dataSetURI, varID, startTime, endTime, attribute='the_geom',
-                                     value=None, gmlIDs=None, verbose=False, coverage='true', outputfname=None,
+                                     value=None, gmlIDs=None, verbose=False, coverage=True, outputfname=None,
                                      sleepSecs=10):
         if verbose:
             ch.setLevel(logging.INFO)
-        return feature_coverage.submitFeatureCoverageOPenDAP(geoType, dataSetURI, varID, startTime, endTime, attribute,
-                                                             value, gmlIDs, verbose, coverage, self.wfsUrl, outputfname,
-                                                             sleepSecs)
+        return feature_coverage.submitFeatureCoverageOPenDAP(geoType, dataSetURI, varID, startTime,
+                                                             endTime, attribute, value, gmlIDs, verbose,
+                                                             coverage, self.wfsUrl, outputfname, sleepSecs)
 
     def submitFeatureCoverageWCSIntersection(self, geoType, dataSetURI, varID, attribute='the_geom', value=None,
-                                             gmlIDs=None, verbose=False, coverage='true', outputfname=None,
+                                             gmlIDs=None, verbose=False, coverage=True, outputfname=None,
                                              sleepSecs=10):
         if verbose:
             ch.setLevel(logging.INFO)
@@ -121,7 +98,7 @@ class pyGDPwebProcessing():
                                                                      outputfname, sleepSecs)
 
     def submitFeatureCategoricalGridCoverage(self, geoType, dataSetURI, varID, attribute='the_geom', value=None,
-                                             gmlIDs=None, verbose=False, coverage='true', delim='COMMA',
+                                             gmlIDs=None, verbose=False, coverage=True, delim='COMMA',
                                              outputfname=None, sleepSecs=10):
         if verbose:
             ch.setLevel(logging.INFO)
@@ -129,10 +106,11 @@ class pyGDPwebProcessing():
                                                                      gmlIDs, verbose, coverage, delim, self.wfsUrl,
                                                                      outputfname, sleepSecs)
 
-    def submitFeatureWeightedGridStatistics(self, geoType, dataSetURI, varID, startTime, endTime, attribute='the_geom',
-                                            value=None, gmlIDs=None, verbose=None, coverage=True, delim='COMMA',
-                                            stat='MEAN', grpby='STATISTIC', timeStep=False, summAttr=False,
-                                            weighted=True, outputfname=None, sleepSecs=10):
+    def submitFeatureWeightedGridStatistics(self, geoType, dataSetURI, varID, startTime, endTime,
+                                            attribute='the_geom', value=None, gmlIDs=None, verbose=False,
+                                            coverage=True, delim='COMMA', stat='MEAN', grpby='STATISTIC',
+                                            timeStep=False, summAttr=False, weighted=True, outputfname=None,
+                                            sleepSecs=10):
         if verbose:
             ch.setLevel(logging.INFO)
         return fwgs.submitFeatureWeightedGridStatistics(geoType, dataSetURI, varID, startTime, endTime, attribute,

@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from pygdp import pyGDP
+import pyGDP
 
 from urlparse import urlparse
 import httplib

@@ -1,6 +1,6 @@
 from lettuce import *
 from nose.tools import assert_equal, assert_true
-from pygdp import pyGDP
+import pyGDP
 import warnings
 
 

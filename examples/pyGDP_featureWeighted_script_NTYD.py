@@ -56,12 +56,15 @@ print()
 
 # Set our datasetURI
 dataSetURI = 'dods://cida.usgs.gov/thredds/dodsC/prism'
+
 # Get the available data types associated with the dataset
 dataType = 'ppt'
+
 # Get available time range on the dataset
 timeRange = pyGDP.getTimeRange(dataSetURI, dataType)
 for t in timeRange:
     print(t)
+
 timeBegin = '1900-01-01T00:00:00.000Z'
 timeEnd = '1901-01-01T00:00:00.000Z'
 print()

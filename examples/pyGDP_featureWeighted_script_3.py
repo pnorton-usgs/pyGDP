@@ -1,4 +1,4 @@
-from pygdp import pyGDP
+import pyGDP
 from __future__ import print_function
 
 pyGDP = pyGDP.pyGDPwebProcessing()

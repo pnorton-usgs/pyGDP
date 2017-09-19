@@ -1,5 +1,4 @@
 from __future__ import print_function
-from __future__ import print_function
 import pyGDP
 
 """
@@ -138,22 +137,21 @@ def main():
     print()
     # Allows the user to select a dods dataset for processing. The getDataSetURI function returns a lot of
     # metadata making it helpful to narrow down the search with anyText.
-    searchString = getInput_4()
-    datasetURIs = gdp.getDataSetURI(anyText=searchString)
-    dataSetURI = getInput_3(datasetURIs)
+    search_string = getInput_4()
+    dataset_uris = gdp.getDataSetURI(anyText=search_string)
+    dataset_uri = getInput_3(dataset_uris)
 
     print()
-    print('Getting available dataTypes... \n')
+    print('Getting available data_types... \n')
     # Gives a list of the available data types within the dods dataset for processing.
-    dataTypes = gdp.getDataType(dataSetURI)
-    dataType = getInput_5(dataTypes)
+    data_types = gdp.getDataType(dataset_uri)
+    data_type = getInput_5(data_types)
 
     print()
-    print()
-    'Getting time range from dataset...'
+    print('Getting time range from dataset...')
     # This example only uses the first time range (see submitFeatureWeightedGridStatistics execution)
-    timeRange = gdp.getTimeRange(dataSetURI, dataType)
-    for i in timeRange:
+    time_range = gdp.getTimeRange(dataset_uri, data_type)
+    for i in time_range:
         print(i)
 
     print()
@@ -162,16 +160,17 @@ def main():
     # all the variable choosing we have done up until this point. It takes a lot of inputs and sends them all
     # through a remote processing algorithm associated with GDP. The result is a file downloaded to the location
     # of the executing script, also returned is the URL associated with the download (it usually gives a csv file).
-    output = gdp.submitFeatureWeightedGridStatistics(shapefile, dataSetURI, dataType, timeRange[0], timeRange[0],
-                                                     attribute, value, verbose=True)
+    output = gdp.submitFeatureWeightedGridStatistics(shapefile, dataset_uri, data_type,
+                                                     time_range[0], time_range[0], attribute, value, verbose=True)
     print()
     print(output)
     print()
 
-    print("The resulting ouput file (which should now exist in the folder where this example was executed) holds the " +
-          "Feature Weighted Grid Statistics (just the mean value if you did the default options) of the area chose " +
-          "from the 'value' shapefile (from GDP). \nFor more details refer to comments in the main method of this " +
-          "example script.")
+    print("The resulting ouput file (which should now exist in the folder where " +
+          "this example was executed) holds the Feature Weighted Grid Statistics " +
+          "(just the mean value if you did the default options) of the area chose " +
+          "from the 'value' shapefile (from GDP). \nFor more details refer to comments " +
+          "in the main method of this example script.")
 
 
 if __name__ == "__main__":

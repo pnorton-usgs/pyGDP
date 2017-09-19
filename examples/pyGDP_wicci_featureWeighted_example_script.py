@@ -1,5 +1,5 @@
 from __future__ import print_function
-from pygdp import pyGDP
+import pyGDP
 
 """
 This script demonstrates how to search for a particular dataset and loop through a list of OPeNDAP resources 
@@ -53,6 +53,6 @@ for dataSetURI in dataSetURIs[1][2][0:3]:
     # Execute a GeatureWeightedGridStatistics request and return the path to the output file.
     # Note that this is for one time step but could be for multiple. Please test on very short
     # time periods to minimize impacts on system resources.
-    outputfile = pyGDP.submitFeatureWeightedGridStatistics(shapefile, dataSetURI, dataType, timeRange[0], timeRange[0],
-                                                           usr_attribute, value)
+    outputfile = pyGDP.submitFeatureWeightedGridStatistics(shapefile, dataSetURI, dataType,
+                                                           timeRange[0], timeRange[0], usr_attribute, value)
     print(outputfile)
