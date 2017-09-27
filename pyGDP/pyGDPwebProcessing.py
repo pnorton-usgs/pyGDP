@@ -81,42 +81,42 @@ class pyGDPwebProcessing():
 
     def submitFeatureCoverageOPenDAP(self, geoType, dataSetURI, varID, startTime, endTime, attribute='the_geom',
                                      value=None, gmlIDs=None, verbose=False, coverage=True, outputfname=None,
-                                     sleepSecs=10):
+                                     sleepSecs=10, async=False):
         if verbose:
             ch.setLevel(logging.INFO)
         return feature_coverage.submitFeatureCoverageOPenDAP(geoType, dataSetURI, varID, startTime,
                                                              endTime, attribute, value, gmlIDs, verbose,
-                                                             coverage, self.wfsUrl, outputfname, sleepSecs)
+                                                             coverage, self.wfsUrl, outputfname, sleepSecs, async=async)
 
     def submitFeatureCoverageWCSIntersection(self, geoType, dataSetURI, varID, attribute='the_geom', value=None,
                                              gmlIDs=None, verbose=False, coverage=True, outputfname=None,
-                                             sleepSecs=10):
+                                             sleepSecs=10, async=False):
         if verbose:
             ch.setLevel(logging.INFO)
         return feature_coverage.submitFeatureCoverageWCSIntersection(geoType, dataSetURI, varID, attribute, value,
                                                                      gmlIDs, verbose, coverage, self.wfsUrl,
-                                                                     outputfname, sleepSecs)
+                                                                     outputfname, sleepSecs, async=async)
 
     def submitFeatureCategoricalGridCoverage(self, geoType, dataSetURI, varID, attribute='the_geom', value=None,
                                              gmlIDs=None, verbose=False, coverage=True, delim='COMMA',
-                                             outputfname=None, sleepSecs=10):
+                                             outputfname=None, sleepSecs=10, async=False):
         if verbose:
             ch.setLevel(logging.INFO)
         return feature_coverage.submitFeatureCategoricalGridCoverage(geoType, dataSetURI, varID, attribute, value,
                                                                      gmlIDs, verbose, coverage, delim, self.wfsUrl,
-                                                                     outputfname, sleepSecs)
+                                                                     outputfname, sleepSecs, async=async)
 
     def submitFeatureWeightedGridStatistics(self, geoType, dataSetURI, varID, startTime, endTime,
                                             attribute='the_geom', value=None, gmlIDs=None, verbose=False,
                                             coverage=True, delim='COMMA', stat='MEAN', grpby='STATISTIC',
                                             timeStep=False, summAttr=False, weighted=True, outputfname=None,
-                                            sleepSecs=10):
+                                            sleepSecs=10, async=False):
         if verbose:
             ch.setLevel(logging.INFO)
         return fwgs.submitFeatureWeightedGridStatistics(geoType, dataSetURI, varID, startTime, endTime, attribute,
                                                         value, gmlIDs, verbose, coverage, delim, stat, grpby,
                                                         timeStep, summAttr, weighted, self.wfsUrl, outputfname,
-                                                        sleepSecs)
+                                                        sleepSecs, async=async)
 
     # pyGDP File Utilities
     def shapeToZip(self, inShape, outZip=None, allFiles=True):

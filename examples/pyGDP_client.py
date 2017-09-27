@@ -1,4 +1,6 @@
 from __future__ import print_function
+from builtins import input
+
 import pyGDP
 
 """
@@ -13,67 +15,74 @@ The client requests only the first time step of a dataset to minimize processing
 """
 
 
-def getInput(listInput):
-    for i in listInput:
+def get_input(input_list):
+    for i in input_list:
         print(i)
 
     print('\n' + 'Choose from the list above (hit ENTER for a default):')
-    usrinput = str(raw_input())
+    usrinput = str(input())
+    assert isinstance(usrinput, str)
 
     if usrinput == "":
         usrinput = "sample:CONUS_states"
         print(usrinput)
     else:
-        while usrinput not in listInput:
+        while usrinput not in input_list:
             print('not a valid input')
-            usrinput = str(raw_input())
+            usrinput = str(input())
+            assert isinstance(usrinput, str)
     return usrinput
 
 
-def getInput_1(listInput):
-    for i in listInput:
+def get_input_1(input_list):
+    for i in input_list:
         print(i)
 
     print('\n' + 'Choose from the list above (hit ENTER for a default):')
-    usrinput = str(raw_input())
+    usrinput = str(input())
+    assert isinstance(usrinput, str)
 
     if usrinput == "":
         usrinput = "STATE"
         print(usrinput)
     else:
-        while usrinput not in listInput:
+        while usrinput not in input_list:
             print('not a valid input')
-            usrinput = str(raw_input())
+            usrinput = str(input())
+            assert isinstance(usrinput, str)
     return usrinput
 
 
-def getInput_2(listInput):
-    for i in listInput:
+def get_input_2(input_list):
+    for i in input_list:
         print(i)
 
     print('\n' + 'Choose from the list above or use "++" to choose all (hit ENTER for a default):')
-    usrinput = str(raw_input())
+    usrinput = str(input())
+    assert isinstance(usrinput, str)
 
     if usrinput == "":
         usrinput = "Wisconsin"
         print(usrinput)
     else:
-        while usrinput not in listInput:
+        while usrinput not in input_list:
             if usrinput == '++':
                 print("All values selected")
-                return listInput
+                return input_list
             print('Not a valid input, please try again.')
-            usrinput = str(raw_input())
+            usrinput = str(input())
+            assert isinstance(usrinput, str)
         print(usrinput)
     return usrinput
 
 
-def getInput_3(listInput):
-    for i in listInput:
+def get_input_3(input_list):
+    for i in input_list:
         print(i)
 
     print('\n' + 'Choose an OPeNDAP url from the list above (hit ENTER for a default):')
-    usrinput = str(raw_input())
+    usrinput = str(input())
+    assert isinstance(usrinput, str)
 
     if usrinput == "":
         usrinput = "dods://cida.usgs.gov/thredds/dodsC/UofIMETDATA"
@@ -81,30 +90,34 @@ def getInput_3(listInput):
     else:
         while 'dods' not in usrinput:
             print("This doesn't appear to be a valid dods url. Please enter an OPeNDAP url.")
-            usrinput = str(raw_input())
+            usrinput = str(input())
+            assert isinstance(usrinput, str)
     return usrinput
 
 
-def getInput_4():
+def getinput_4():
     print('Enter a search term or press ENTER to return all datasets in catalog.')
-    usrinput = str(raw_input())
+    usrinput = str(input())
+    assert isinstance(usrinput, str)
     return usrinput
 
 
-def getInput_5(listInput):
-    for i in listInput:
+def get_input_5(input_list):
+    for i in input_list:
         print(i)
 
     print('\n' + 'Choose from the list above (hit ENTER for a default):')
-    usrinput = str(raw_input())
+    usrinput = str(input())
+    assert isinstance(usrinput, str)
 
     if usrinput == "":
         usrinput = "surface_downwelling_shortwave_flux_in_air"
         print(usrinput)
     else:
-        while usrinput not in listInput:
+        while usrinput not in input_list:
             print('not a valid input')
-            usrinput = str(raw_input())
+            usrinput = str(input())
+            assert isinstance(usrinput, str)
     return usrinput
 
 
@@ -118,34 +131,34 @@ def main():
     sfiles = gdp.getShapefiles()
     for s in sfiles:
         print(s)
-    shapefile = getInput(sfiles)
+    shapefile = get_input(sfiles)
 
     print()
     print('Get Attributes:')
     # Gets shapefile dbf attributes of the file you chose from the previous selection process.
     # A good example of levels of detail processed by on GDP.
     attributes = gdp.getAttributes(shapefile)
-    attribute = getInput_1(attributes)
+    attribute = get_input_1(attributes)
 
     print()
     print('Get values:')
     # Yet another level of detail down on the shapefile. This time it is values of an attribute or shapefile.
     # Does all the web processing necessary to show the user what they are working with.
     values = gdp.getValues(shapefile, attribute)
-    value = getInput_2(values)
+    value = get_input_2(values)
 
     print()
     # Allows the user to select a dods dataset for processing. The getDataSetURI function returns a lot of
     # metadata making it helpful to narrow down the search with anyText.
-    search_string = getInput_4()
+    search_string = getinput_4()
     dataset_uris = gdp.getDataSetURI(anyText=search_string)
-    dataset_uri = getInput_3(dataset_uris)
+    dataset_uri = get_input_3(dataset_uris)
 
     print()
     print('Getting available data_types... \n')
     # Gives a list of the available data types within the dods dataset for processing.
     data_types = gdp.getDataType(dataset_uri)
-    data_type = getInput_5(data_types)
+    data_type = get_input_5(data_types)
 
     print()
     print('Getting time range from dataset...')
