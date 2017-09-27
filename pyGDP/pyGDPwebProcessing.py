@@ -61,7 +61,7 @@ class pyGDPwebProcessing():
         self.version = '1.1.0'
         self.wps = WebProcessingService(self.wpsUrl)
 
-    def WPSgetCapbilities(self, xml=None):
+    def WPSgetCapabilities(self, xml=None):
         """
         Returns a list of capabilities.
         """
