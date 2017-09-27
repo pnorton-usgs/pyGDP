@@ -1,19 +1,22 @@
 from __future__ import (absolute_import, division, print_function)
 
-from pygdp import shapefile_value_handle
+from . import shapefile_value_handle
 
-def getGMLIDs(shapefile, attribute, value, WFS_URL):
+
+def getGMLIDs(shapefile, attribute, value, wfs_url):
     """
     This function returns the gmlID associated with a particular attribute value.
     """
-    tuples = getTuples(shapefile, attribute, WFS_URL)
+    tuples = getTuples(shapefile, attribute, wfs_url)
     return _getFilterID(tuples, value)
 
-def getTuples(shapefile, attribute, WFS_URL):
+
+def getTuples(shapefile, attribute, wfs_url):
     """
     Will return the dictionary tuples only.
     """
-    return shapefile_value_handle.getValues(shapefile, attribute, getTuples='only', limitFeatures=None, WFS_URL=WFS_URL)
+    return shapefile_value_handle.getValues(shapefile, attribute, getTuples='only', limitFeatures=None, wfs_url=wfs_url)
+
 
 def _getFilterID(tuples, value):
     """
@@ -21,10 +24,10 @@ def _getFilterID(tuples, value):
     associated with the value specified.
     """
     value = str(value)
-    filterID = []
+    filter_id = []
     for item in tuples:
         if item[0] == value:
-            filterID.append(item[1])
-    if filterID==[]:
+            filter_id.append(item[1])
+    if not filter_id:
         raise Exception('Feature attribute value %s was not found in the feature collection.' % value)
-    return filterID
+    return filter_id

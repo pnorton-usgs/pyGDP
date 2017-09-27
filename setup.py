@@ -9,10 +9,10 @@ rootpath = os.path.abspath(os.path.dirname(__file__))
 
 def extract_version():
     version = None
-    fname = os.path.join(rootpath, 'pygdp', '__init__.py')
+    fname = os.path.join(rootpath, 'pyGDP', '__init__.py')
     with open(fname) as f:
         for line in f:
-            if (line.startswith('__version__')):
+            if line.startswith('__version__'):
                 _, version = line.split('=')
                 version = version.strip()[1:-1]  # Remove quotation characters
                 break
@@ -27,7 +27,7 @@ setup(
     license='Public Domain',
     maintainer='Jordan Read',  # Originally Xao Yang
     maintainer_email='jread@usgs.gov',
-    py_modules=['pyGDP','GDP_XML_Generator'],
+    # py_modules=['pyGDP', 'GDP_XML_Generator'],
     packages=find_packages(),
     url='https://github.com/USGS-CIDA/pyGDP',
     test_suite='tests',

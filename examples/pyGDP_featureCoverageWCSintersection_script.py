@@ -1,4 +1,5 @@
-from pygdp import pyGDP
+import pyGDP
+
 pyGDP = pyGDP.pyGDPwebProcessing()
 
 shapefile = 'sample:CONUS_states'

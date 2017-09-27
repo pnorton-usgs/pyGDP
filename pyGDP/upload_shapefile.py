@@ -3,12 +3,13 @@ from __future__ import (absolute_import, division, print_function)
 import base64
 import os
 from owslib.etree import etree
-from pygdp.GDP_XML_Generator import gdpXMLGenerator
 from owslib.wps import WebProcessingService, monitorExecution
-from pygdp.namespaces import upload_URL, WPS_URL, WPS_Service, CSWURL
+from .GDP_XML_Generator import gdpXMLGenerator
+from .namespaces import upload_URL, WPS_Service
 
-#This file contains a function to encode a zipped shapefile (probably from
-#the shapeToZip function) then include that function
+
+# This file contains a function to encode a zipped shapefile (probably from
+# the shapeToZip function) then include that function
 def uploadShapeFile(filePath):
     """
     Given a file, this function encodes the file and uploads it onto geoserver.
@@ -31,31 +32,32 @@ def uploadShapeFile(filePath):
     filename = filename[len(filename) - 1]
     filename = filename.replace("_copy.zip", "")
 
-    xmlGen = gdpXMLGenerator()
-    root = xmlGen.getUploadXMLtree(filename, upload_URL, filedata)
+    xml_gen = gdpXMLGenerator()
+    root = xml_gen.getUploadXMLtree(filename, upload_URL, filedata)
 
     # now we have a complete XML upload request
-    uploadRequest = etree.tostring(root)
-    POST = WebProcessingService(WPS_Service)
-    execution = POST.execute(None, [], request=uploadRequest)
+    upload_request = etree.tostring(root)
+    post = WebProcessingService(WPS_Service)
+    execution = post.execute(None, [], request=upload_request)
     monitorExecution(execution)
-    return "upload:"+filename
+    return "upload:" + filename
+
 
 def _encodeZipFolder(filename):
     """
     This function will encode a zipfile and return the filename.
     """
-    #check extension
+    # check extension
     if not filename.endswith('.zip'):
         raise Exception('Wrong filetype.')
 
-    #encode the file
+    # encode the file
     with open(filename, 'rb') as fin:
-        bytesRead = fin.read()
-        encode= base64.b64encode(bytesRead)
+        bytes_read = fin.read()
+        encode = base64.b64encode(bytes_read)
 
-    #renames the file and saves it onto local drive
-    filename = filename.replace('.zip','_copy.zip')
+    # renames the file and saves it onto local drive
+    filename = filename.replace('.zip', '_copy.zip')
 
     fout = open(filename, 'wb')
     fout.write(encode)

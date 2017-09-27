@@ -1,13 +1,15 @@
 from __future__ import (absolute_import, division, print_function)
 
 from owslib.wps import WebProcessingService
-from io import BytesIO
 from owslib.etree import etree
-from pygdp.GDP_XML_Generator import gdpXMLGenerator
-from pygdp import _execute_request
-import sys
 
-from pygdp.namespaces import WPS_Service
+from . import _execute_request
+from .GDP_XML_Generator import gdpXMLGenerator
+from .namespaces import WPS_Service
+
+# import sys
+# from io import BytesIO
+
 
 def _generateRequest(dataSetURI, algorithm, method, varID, verbose):
     """
@@ -17,14 +19,14 @@ def _generateRequest(dataSetURI, algorithm, method, varID, verbose):
     Will return a list containing the info requested for (either data types or time range).
     """
 
-    POST = WebProcessingService(WPS_Service, verbose=verbose)
+    post = WebProcessingService(WPS_Service, verbose=verbose)
 
-    xmlGen = gdpXMLGenerator()
-    root = xmlGen.getXMLRequestTree(dataSetURI, algorithm, method, varID, verbose)
+    xml_gen = gdpXMLGenerator()
+    root = xml_gen.getXMLRequestTree(dataSetURI, algorithm, method, varID, verbose)
 
     request = etree.tostring(root)
 
-    execution = POST.execute(None, [], request=request)
+    execution = post.execute(None, [], request=request)
 
     _execute_request._check_for_execution_errors(execution)
 
@@ -38,6 +40,7 @@ def _generateRequest(dataSetURI, algorithm, method, varID, verbose):
         seekterm = '{xsd/gdpdatatypecollection-1.0.xsd}unitsstring'
 
     return _parseXMLNodesForTagText(execution.response, seekterm)
+
 
 def _parseXMLNodesForTagText(xml, tag):
     """
