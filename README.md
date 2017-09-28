@@ -38,6 +38,7 @@ git clone https://github.com/USGS-CIDA/pyGDP.git
 virtualenv -p /usr/bin/python2.7 pyGDP/venv
 source pyGDP/venv/bin/activate
 cd pyGDP
+pip install -r requirements.txt -r requirements-dev.txt
 pip install .
 lettuce Lettuce_Tests/features/ --tag=-not_working
 ```
