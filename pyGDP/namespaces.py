@@ -15,10 +15,10 @@ def get_URLs(environ_name):
                            'WPS_Service': 'https://cida.usgs.gov/gdp/utility/WebProcessingService',
                            'CSW_URL': 'https://www.sciencebase.gov/catalog/item/54dd2326e4b08de9379b2fb1/csw'
                            },
-            'development': {'WFS_URL': 'http://cidasddvasgdp.cr.usgs.gov:8082/gdp/geoserver/wfs',
-                            'upload_URL': 'http://cidasddvasgdp.cr.usgs.gov:8082/gdp/geoserver',
-                            'WPS_URL': 'http://cidasddvasgdp.cr.usgs.gov:8080/gdp-process-wps/WebProcessingService',
-                            'WPS_Service': 'http://cidasddvasgdp.cr.usgs.gov:8080/gdp-utility-wps/WebProcessingService?Service=WPS&Request=GetCapabilities',
+            'development': {'WFS_URL': 'https://cidasddvasgdp.cr.usgs.gov:8082/gdp/geoserver/wfs',
+                            'upload_URL': 'https://cidasddvasgdp.cr.usgs.gov:8082/gdp/geoserver',
+                            'WPS_URL': 'https://cidasddvasgdp.cr.usgs.gov:8080/gdp-process-wps/WebProcessingService',
+                            'WPS_Service': 'https://cidasddvasgdp.cr.usgs.gov:8080/gdp-utility-wps/WebProcessingService?Service=WPS&Request=GetCapabilities',
                             'CSW_URL': 'https://www.sciencebase.gov/catalog/item/54dd2326e4b08de9379b2fb1/csw'
                             },
             'testing': {'WFS_URL': 'https://cida-test.er.usgs.gov/gdp/geoserver/wfs',
